@@ -77,6 +77,7 @@ const Portfolio = () => {
       title: '암호화폐 자동매매 시스템',
       subtitle: 'Deep Learning 기반 시계열 예측 트레이딩 봇',
       overview: 'TCN, PatchTST, N-BEATS 등 최신 시계열 예측 아키텍처를 활용하여 암호화폐 가격을 예측하고, 실시간으로 자동 매매를 수행하는 시스템입니다.',
+
       features: [
         { icon: '📊', title: '다중 모델 앙상블', desc: 'TCN, PatchTST, N-BEATS 모델 앙상블로 예측 정확도 향상' },
         { icon: '🔄', title: '실시간 거래', desc: 'Bybit, Binance, Bithumb 다중 거래소 지원' },
@@ -336,7 +337,8 @@ const Portfolio = () => {
       title: 'MCI (Motion Code Intelligence)',
       subtitle: '4DX 시네마 자동 모션 코드 생성',
       overview: '영상 내 특징점을 추적하여 6DOF VO 데이터를 추출하고, 4DX 시네마용 모션 코드를 자동 생성하는 시스템입니다.',
-      features: [
+      images: ['/images/mci-cosmos01.png','/images/mci-cosmos02.png'],
+	  features: [
         { icon: '🎬', title: 'Camera Module', desc: '영상 특징점 기반 Roll, Pitch 생성' },
         { icon: '🎵', title: 'Sound Module', desc: '비트/템포 분석 기반 Heave 생성' },
         { icon: '💃', title: 'Joint Module', desc: '인물 관절 추적 기반 모션 생성' },
@@ -497,9 +499,9 @@ const Portfolio = () => {
   ];
 
   const skills = {
-    'Deep Learning': ['PyTorch', 'TensorFlow', 'Keras', 'ONNX', 'TensorRT', 'YOLO Series'],
-    'Medical Imaging': ['ITK', 'VTK', 'MONAI', 'DICOM', 'NIfTI', '3D Slicer'],
-    'Computer Vision': ['OpenCV', 'Halcon', 'Detectron2', 'Albumentations', 'Pose Estimation'],
+    'Deep Learning': ['PyTorch', 'TensorFlow', 'Keras', 'YOLO Series'],
+    'Medical Imaging': ['ITK', 'VTK', 'DICOM', 'NIfTI', '3D Slicer'],
+    'Computer Vision': ['OpenCV', 'Halcon',  'Pose Estimation'],
     'Development': ['C++', 'MFC', 'Python', 'C#', 'FastAPI', 'Git', 'Linux'],
     'NLP/LLM': ['Transformers', 'LangChain', 'LoRA', 'vLLM'],
     'Data & MLOps': ['Pandas', 'NumPy', 'MLflow', 'Docker', 'PostgreSQL']
@@ -1084,63 +1086,28 @@ const Portfolio = () => {
         )}
 
         {/* Charts Section - MCI (ID: 11) */}
-        {projectId === 11 && (
-          <>
-            {/* Motion Data Chart */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                🎬 모션 코드 데이터 예시
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={detail.motionData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis dataKey="time" stroke="#666" label={{ value: 'Time (s)', position: 'bottom', fill: '#666' }} />
-                    <YAxis stroke="#666" />
-                    <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }} />
-                    <Legend />
-                    <Line type="monotone" dataKey="roll" stroke="#667eea" strokeWidth={2} name="Roll (deg)" />
-                    <Line type="monotone" dataKey="pitch" stroke="#43e97b" strokeWidth={2} name="Pitch (deg)" />
-                    <Line type="monotone" dataKey="heave" stroke="#f5576c" strokeWidth={2} name="Heave (cm)" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Module Similarity */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                📈 모듈별 Studio 유사도
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <ResponsiveContainer width="100%" height={250}>
-                  <BarChart data={detail.moduleComparison} layout="vertical">
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis type="number" stroke="#666" domain={[0, 100]} />
-                    <YAxis type="category" dataKey="module" stroke="#666" width={80} />
-                    <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }} />
-                    <Bar dataKey="similarity" fill="#667eea" name="유사도 (%)" radius={[0, 4, 4, 0]}>
-                      {detail.moduleComparison.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </>
-        )}
-
+        {projectId === 11 && detail.images && (
+		  <div style={{ marginBottom: '48px' }}>
+			<h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
+			  📸 COSMOS 프로그램 스크린샷
+			</h2>
+			<div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+			  {detail.images.map((img, i) => (
+				<img 
+				  key={i}
+				  src={img} 
+				  alt={`MCI screenshot ${i + 1}`}
+				  style={{
+					width: '100%',
+					maxWidth: '900px',
+					borderRadius: '12px',
+					border: '1px solid rgba(255,255,255,0.1)'
+				  }}
+				/>
+			  ))}
+			</div>
+		  </div>
+		)}
         {/* Architecture */}
         <div style={{ marginBottom: '48px' }}>
           <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
