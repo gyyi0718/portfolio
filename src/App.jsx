@@ -6,6 +6,7 @@ const Portfolio = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const personalInfo = {
     name: '이경윤',
@@ -58,7 +59,7 @@ const Portfolio = () => {
     {
       id: 4,
       company: '가천대 길병원 의료기기 R&D센터',
-      role: 'Computer Vision Engineer',
+      role: 'Medical AI Developer',
       period: '2018 - 2020 (1년 9개월)',
       description: 'Cobbs Angle 자동 측정 시스템, 다양한 의료 영상 Annotation 프로그램 개발.',
       tech: ['PyTorch', 'C++', 'MFC', 'ITK', 'VTK', 'Python', 'Web'],
@@ -551,7 +552,7 @@ const Portfolio = () => {
         </div>
 
         {/* Key Metrics */}
-        <div style={{
+        <div className="grid-4" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '20px',
@@ -578,7 +579,7 @@ const Portfolio = () => {
           <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
             주요 기능
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+          <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
             {detail.features.map((feature, i) => (
               <div key={i} style={{
                 padding: '24px',
@@ -1227,18 +1228,68 @@ const Portfolio = () => {
       color: '#e0e0e0',
       display: 'flex'
     }}>
+      {/* Mobile Menu Button */}
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setMenuOpen(!menuOpen)}
+        style={{
+          display: 'none',
+          position: 'fixed',
+          top: '16px',
+          left: '16px',
+          zIndex: 1000,
+          width: '44px',
+          height: '44px',
+          borderRadius: '12px',
+          background: 'rgba(102,126,234,0.9)',
+          border: 'none',
+          cursor: 'pointer',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '5px'
+        }}
+      >
+        <span style={{ width: '20px', height: '2px', background: '#fff', borderRadius: '2px', transition: 'all 0.3s', transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }} />
+        <span style={{ width: '20px', height: '2px', background: '#fff', borderRadius: '2px', transition: 'all 0.3s', opacity: menuOpen ? 0 : 1 }} />
+        <span style={{ width: '20px', height: '2px', background: '#fff', borderRadius: '2px', transition: 'all 0.3s', transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }} />
+      </button>
+
+      {/* Mobile Overlay */}
+      {menuOpen && (
+        <div 
+          className="mobile-overlay"
+          onClick={() => setMenuOpen(false)}
+          style={{
+            display: 'none',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.7)',
+            zIndex: 998
+          }}
+        />
+      )}
+
       {/* Left Sidebar */}
-      <aside style={{
-        width: '300px',
-        minHeight: '100vh',
-        background: 'linear-gradient(180deg, #12121a 0%, #0d0d14 100%)',
-        borderRight: '1px solid rgba(255,255,255,0.06)',
-        padding: '40px 28px',
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        overflowY: 'auto'
-      }}>
+      <aside 
+        className={`sidebar ${menuOpen ? 'open' : ''}`}
+        style={{
+          width: '300px',
+          minHeight: '100vh',
+          background: 'linear-gradient(180deg, #12121a 0%, #0d0d14 100%)',
+          borderRight: '1px solid rgba(255,255,255,0.06)',
+          padding: '40px 28px',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          overflowY: 'auto',
+          zIndex: 999,
+          transition: 'transform 0.3s ease'
+        }}
+      >
         {/* Profile */}
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <div style={{
@@ -1278,7 +1329,7 @@ const Portfolio = () => {
           {['about', 'career', 'projects', 'skills'].map((section) => (
             <button
               key={section}
-              onClick={() => { setActiveSection(section); setSelectedProject(null); }}
+              onClick={() => { setActiveSection(section); setSelectedProject(null); setMenuOpen(false); }}
               style={{
                 width: '100%',
                 padding: '12px 18px',
@@ -1314,7 +1365,7 @@ const Portfolio = () => {
         }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', textAlign: 'center' }}>
             <div>
-              <p style={{ fontSize: '22px', fontWeight: '700', color: '#667eea', margin: 0 }}>5+</p>
+              <p style={{ fontSize: '22px', fontWeight: '700', color: '#667eea', margin: 0 }}>6+</p>
               <p style={{ fontSize: '10px', color: '#666', margin: '4px 0 0' }}>Years</p>
             </div>
             <div>
@@ -1326,11 +1377,14 @@ const Portfolio = () => {
       </aside>
 
       {/* Main Content */}
-      <main style={{
-        marginLeft: '300px',
-        flex: 1,
-        padding: '56px 72px'
-      }}>
+      <main 
+        className="main-content"
+        style={{
+          marginLeft: '300px',
+          flex: 1,
+          padding: '56px 72px'
+        }}
+      >
         {/* Show Project Detail if selected */}
         {selectedProject ? (
           <ProjectDetail projectId={selectedProject} />
@@ -1346,7 +1400,7 @@ const Portfolio = () => {
                   안녕하세요, AI/ML 엔지니어 이경윤입니다. 의료 영상 AI, 컴퓨터 비전, 산업용 검사 시스템 분야에서 6년 9개월의 경력을 보유하고 있습니다.
                 </p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '40px' }}>
+                <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '40px' }}>
                   {[
                     { icon: '🏥', title: 'Medical AI', desc: 'Brain CAD, CT Metastasis, Cobbs Angle 등' },
                     { icon: '🏭', title: 'Industrial Vision', desc: 'T-bar 결함 검출, 팬터그래프 모니터링' },
@@ -1492,7 +1546,7 @@ const Portfolio = () => {
                 </div>
 
                 {/* Projects Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+                <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
                   {filteredProjects.map((project) => (
                     <div
                       key={project.id}
@@ -1624,6 +1678,56 @@ const Portfolio = () => {
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0a0a0f; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
+        @media (max-width: 1024px) {
+          .main-content {
+            padding: 40px 40px !important;
+          }
+          .grid-4 {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .mobile-menu-btn {
+            display: flex !important;
+          }
+          
+          .mobile-overlay {
+            display: block !important;
+          }
+          
+          .sidebar {
+            transform: translateX(-100%);
+            width: 280px !important;
+            padding: 80px 24px 40px !important;
+          }
+          
+          .sidebar.open {
+            transform: translateX(0);
+          }
+          
+          .main-content {
+            margin-left: 0 !important;
+            padding: 80px 20px 40px !important;
+          }
+          
+          .main-content h2 {
+            font-size: 28px !important;
+          }
+          
+          .main-content h1 {
+            font-size: 28px !important;
+          }
+          
+          .grid-2, .grid-3, .grid-4 {
+            grid-template-columns: 1fr !important;
+          }
+          
+          .recharts-wrapper {
+            font-size: 10px;
+          }
+        }
       `}</style>
     </div>
   );
