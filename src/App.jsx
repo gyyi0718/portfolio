@@ -77,7 +77,6 @@ const Portfolio = () => {
       title: '암호화폐 자동매매 시스템',
       subtitle: 'Deep Learning 기반 시계열 예측 트레이딩 봇',
       overview: 'TCN, PatchTST, N-BEATS 등 최신 시계열 예측 아키텍처를 활용하여 암호화폐 가격을 예측하고, 실시간으로 자동 매매를 수행하는 시스템입니다.',
-
       features: [
         { icon: '📊', title: '다중 모델 앙상블', desc: 'TCN, PatchTST, N-BEATS 모델 앙상블로 예측 정확도 향상' },
         { icon: '🔄', title: '실시간 거래', desc: 'Bybit, Binance, Bithumb 다중 거래소 지원' },
@@ -337,7 +336,7 @@ const Portfolio = () => {
       title: 'MCI (Motion Code Intelligence)',
       subtitle: '4DX 시네마 자동 모션 코드 생성',
       overview: '영상 내 특징점을 추적하여 6DOF VO 데이터를 추출하고, 4DX 시네마용 모션 코드를 자동 생성하는 시스템입니다.',
-      images: ['/images/mci-cosmos01.png','/images/mci-cosmos02.png'],
+      images: ['/images/mci-cosmos01.jpg','/images/mci-cosmos02.jpg'],
 	  features: [
         { icon: '🎬', title: 'Camera Module', desc: '영상 특징점 기반 Roll, Pitch 생성' },
         { icon: '🎵', title: 'Sound Module', desc: '비트/템포 분석 기반 Heave 생성' },
