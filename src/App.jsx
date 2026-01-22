@@ -1177,7 +1177,7 @@ const Portfolio = () => {
                   {step.step}
                 </div>
                 <h4 style={{ fontSize: '15px', color: '#fff', margin: '0 0 8px' }}>{step.title}</h4>
-                <p style={{ fontSize: '13px', color: '#888', margin: 0, lineHeight: '1.5' }}>{step.desc}</p>
+                <p style={{ fontSize: '13px', color: '#888', margin: 0, lineHeight: '1.5', whiteSpace: 'pre-line' }}>{step.desc}</p>
                 {i < detail.architecture.length - 1 && (
                   <div style={{
                     position: 'absolute',
@@ -1365,7 +1365,7 @@ const Portfolio = () => {
         }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', textAlign: 'center' }}>
             <div>
-              <p style={{ fontSize: '22px', fontWeight: '700', color: '#667eea', margin: 0 }}>6+</p>
+              <p style={{ fontSize: '22px', fontWeight: '700', color: '#667eea', margin: 0 }}>5+</p>
               <p style={{ fontSize: '10px', color: '#666', margin: '4px 0 0' }}>Years</p>
             </div>
             <div>
