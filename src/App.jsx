@@ -135,25 +135,7 @@ const Portfolio = () => {
         { step: 3, title: 'Deep Learning', desc: '3D CNN 기반 nodule detection' },
         { step: 4, title: 'Visualization', desc: 'VTK 기반 Axial 시각화' }
       ],
-      detectionData: [
-        { size: '0-5mm', detected: 85, total: 100 },
-        { size: '5-10mm', detected: 94, total: 100 },
-        { size: '10-20mm', detected: 98, total: 100 },
-        { size: '>20mm', detected: 100, total: 100 }
-      ],
-      performanceRadar: [
-        { metric: 'Sensitivity', value: 92 },
-        { metric: 'Specificity', value: 88 },
-        { metric: 'Accuracy', value: 90 },
-        { metric: 'F1-Score', value: 89 },
-        { metric: 'AUC', value: 94 }
-      ],
-      metrics: [
-        { label: 'Sensitivity', value: '92.3%', color: '#43e97b' },
-        { label: 'Specificity', value: '88.5%', color: '#667eea' },
-        { label: 'Detection Time', value: '< 30s', color: '#4facfe' },
-        { label: 'Dataset Size', value: '1,500+', color: '#f5576c' }
-      ],
+      metrics: [],
       techStack: ['C++', 'MFC', 'ITK', 'VTK', 'PyTorch', '3D CNN', 'DICOM']
     },
     2: {
@@ -172,23 +154,7 @@ const Portfolio = () => {
         { step: 3, title: 'Apex Vertebra Detection', desc: '1. 마스크에서 척추 객체 윤곽선 추출 2. 척추 객체의 중심점 계산 그리고 각 척추의 기울기 추정을 위한 회전 바운딩 박스 계산 3. 척추 만곡의 Apex vertebra 자동 선택: 첫 척추 대비 x-편차 최대인 척추 선택 4.Apex 위/아래에서 End vertebra 자동 선택 5.선택된 End vertebra에서 종판(endplate) 방향 선분 좌표 추출' },
         { step: 4, title: 'Angle Calculation', desc: '1. 위/아래 End vertebra의 기울기 각도 계산 2. 각도 방향성(0~360°) 문제 보정 로직 적용 3. Cobbs angle 자동 계산' }
       ],
-      angleDistribution: [
-        { range: '0-10°', count: 45, severity: 'Normal' },
-        { range: '10-25°', count: 32, severity: 'Mild' },
-        { range: '25-40°', count: 18, severity: 'Moderate' },
-        { range: '>40°', count: 5, severity: 'Severe' }
-      ],
-      accuracyComparison: [
-        { method: 'Manual (Expert)', mae: 0, time: 180 },
-        { method: 'Manual (Resident)', mae: 3.2, time: 120 },
-        { method: 'Our System', mae: 2.1, time: 5 }
-      ],
-      metrics: [
-        { label: 'MAE', value: '2.1°', color: '#43e97b' },
-        { label: 'Processing Time', value: '< 5s', color: '#667eea' },
-        { label: 'Correlation', value: '0.97', color: '#4facfe' },
-        { label: 'Test Cases', value: '500+', color: '#f5576c' }
-      ],
+      metrics: [],
       techStack: ['C++', 'MFC', 'OpenCV', 'ITK', 'VTK', 'PyTorch', 'U-Net']
     },
     3: {
@@ -411,46 +377,6 @@ const Portfolio = () => {
       hasDetail: true
     },
     {
-      id: 5,
-      title: '3D Annotation Program',
-      category: 'Annotation Tools',
-      description: '코뼈 골절 딥러닝 모델 개발을 위한 CT 데이터 3D Annotation 프로그램.',
-      tech: ['C++', 'MFC', 'ITK', 'VTK'],
-      gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
-      icon: '📦',
-      hasDetail: false
-    },
-    {
-      id: 6,
-      title: '2D Annotation Program',
-      category: 'Annotation Tools',
-      description: '부비동 딥러닝 모델 개발을 위한 X-Ray 영상 2D Annotation 프로그램.',
-      tech: ['C++', 'MFC', 'ITK', 'VTK'],
-      gradient: 'linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)',
-      icon: '🖼️',
-      hasDetail: false
-    },
-    {
-      id: 7,
-      title: '동영상 Annotation',
-      category: 'Annotation Tools',
-      description: '대장 내시경 및 수술 동영상 Annotation 프로그램.',
-      tech: ['C++', 'MFC', 'OpenCV'],
-      gradient: 'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
-      icon: '🎬',
-      hasDetail: false
-    },
-    {
-      id: 8,
-      title: 'Leg Muscle Annotation',
-      category: 'Annotation Tools',
-      description: 'CT 다리 데이터에서 6개의 근육을 구분하여 Annotation. NifTI 포맷 저장.',
-      tech: ['C++', 'MFC', 'ITK', 'VTK', 'OpenCV'],
-      gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-      icon: '🦵',
-      hasDetail: false
-    },
-    {
       id: 9,
       title: '궤도거리표 검출',
       category: 'Industrial AI',
@@ -501,7 +427,7 @@ const Portfolio = () => {
     'Data & MLOps': ['Pandas', 'NumPy', 'MLflow', 'Docker', 'PostgreSQL']
   };
 
-  const categories = ['all', 'Medical AI', 'Annotation Tools', 'Industrial AI', 'Motion Analysis', 'Quant Trading'];
+  const categories = ['all', 'Medical AI', 'Industrial AI', 'Motion Analysis', 'Quant Trading'];
   const filteredProjects = selectedCategory === 'all' ? projects : projects.filter(p => p.category === selectedCategory);
 
   const COLORS = ['#667eea', '#43e97b', '#f5576c', '#4facfe', '#fa709a', '#f5af19'];
@@ -756,135 +682,6 @@ const Portfolio = () => {
                     ))}
                   </tbody>
                 </table>
-              </div>
-            </div>
-          </>
-        )}
-
-        {/* Charts Section - Brain CAD (ID: 1) */}
-        {projectId === 1 && (
-          <>
-            {/* Detection Performance by Size */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                📊 병변 크기별 검출 성능
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={detail.detectionData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis dataKey="size" stroke="#666" />
-                    <YAxis stroke="#666" />
-                    <Tooltip contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }} />
-                    <Legend />
-                    <Bar dataKey="detected" fill="#43e97b" name="검출됨" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="total" fill="#333" name="전체" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Radar Chart */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                🎯 성능 지표
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <ResponsiveContainer width="100%" height={300}>
-                  <RadarChart data={detail.performanceRadar}>
-                    <PolarGrid stroke="#333" />
-                    <PolarAngleAxis dataKey="metric" stroke="#888" />
-                    <PolarRadiusAxis stroke="#666" domain={[0, 100]} />
-                    <Radar name="Performance" dataKey="value" stroke="#667eea" fill="#667eea" fillOpacity={0.5} />
-                  </RadarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </>
-        )}
-
-        {/* Charts Section - Cobbs Angle (ID: 2) */}
-        {projectId === 2 && (
-          <>
-            {/* Angle Distribution */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                📊 Cobbs Angle 분포
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={detail.angleDistribution}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis dataKey="range" stroke="#666" />
-                    <YAxis stroke="#666" />
-                    <Tooltip 
-                      contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
-                      formatter={(value, name, props) => [value, `${props.payload.severity}`]}
-                    />
-                    <Legend />
-                    <Bar dataKey="count" name="환자 수" radius={[4, 4, 0, 0]}>
-                      {detail.angleDistribution.map((entry, index) => (
-                        <Cell 
-                          key={`cell-${index}`} 
-                          fill={index === 0 ? '#43e97b' : index === 1 ? '#4facfe' : index === 2 ? '#f5af19' : '#f5576c'} 
-                        />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Accuracy Comparison */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                ⚡ 측정 정확도 및 시간 비교
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-                  {detail.accuracyComparison.map((item, i) => (
-                    <div key={i} style={{
-                      padding: '24px',
-                      background: i === 2 ? 'rgba(67,233,123,0.1)' : 'rgba(255,255,255,0.02)',
-                      borderRadius: '12px',
-                      border: i === 2 ? '2px solid #43e97b' : '1px solid rgba(255,255,255,0.06)',
-                      textAlign: 'center'
-                    }}>
-                      <h4 style={{ fontSize: '16px', color: i === 2 ? '#43e97b' : '#fff', margin: '0 0 20px' }}>
-                        {item.method}
-                        {i === 2 && <span style={{ fontSize: '10px', marginLeft: '8px' }}>⭐</span>}
-                      </h4>
-                      <div style={{ marginBottom: '16px' }}>
-                        <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>MAE (°)</p>
-                        <p style={{ fontSize: '24px', color: '#667eea', margin: 0, fontWeight: '600' }}>{item.mae}°</p>
-                      </div>
-                      <div>
-                        <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>처리 시간</p>
-                        <p style={{ fontSize: '24px', color: '#4facfe', margin: 0, fontWeight: '600' }}>{item.time}s</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </>
