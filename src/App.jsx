@@ -77,7 +77,9 @@ const Portfolio = () => {
       title: '암호화폐 자동매매 시스템',
       subtitle: 'Deep Learning 기반 시계열 예측 트레이딩 봇',
       overview: 'Autoformer, N-BEATS 등 시계열 예측 모델을 비교 분석하여 암호화폐 가격 방향을 예측하고, 신뢰도 기반 필터링으로 고확률 시그널에서만 거래를 수행하는 자동매매 시스템입니다. 백테스트 결과 N-BEATS 모델이 동일 조건에서 Autoformer 대비 압도적으로 우수한 성능을 보였습니다.',
+      dashboardUrl: 'https://crypto-dashboard-eogy62m7vg4bdencfkytwg.streamlit.app/',
       features: [
+        { icon: '📊', title: '실시간 대시보드', desc: 'Streamlit 기반 실시간 포지션 및 수익률 모니터링' },
         { icon: '🤖', title: '모델 비교 분석', desc: 'Autoformer vs N-BEATS 등 다양한 시계열 모델 백테스트 비교' },
         { icon: '🎯', title: '신뢰도 필터링', desc: '예측 신뢰도 40% 이상 시그널만 거래 실행' },
         { icon: '🛡️', title: '리스크 관리', desc: 'Stop-loss 2%, Take-profit 3%, 최대 보유 60분' },
@@ -468,9 +470,34 @@ const Portfolio = () => {
           <p style={{ fontSize: '18px', color: '#667eea', margin: '0 0 24px' }}>
             {detail.subtitle}
           </p>
-          <p style={{ fontSize: '16px', color: '#888', lineHeight: '1.8', maxWidth: '800px' }}>
+          <p style={{ fontSize: '16px', color: '#888', lineHeight: '1.8', maxWidth: '800px', margin: '0 0 24px' }}>
             {detail.overview}
           </p>
+          {detail.dashboardUrl && (
+            <a
+              href={detail.dashboardUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '14px 28px',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                border: 'none',
+                borderRadius: '12px',
+                color: '#fff',
+                fontSize: '16px',
+                fontWeight: '600',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 15px rgba(102,126,234,0.4)'
+              }}
+            >
+              📊 실시간 대시보드 바로가기 →
+            </a>
+          )}
         </div>
 
         {/* Key Metrics */}
@@ -524,34 +551,6 @@ const Portfolio = () => {
         {/* Charts Section - 암호화폐 자동매매 (ID: 12) */}
         {projectId === 12 && (
           <>
-            {/* Price Prediction Chart */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                📊 가격 예측 vs 실제 가격
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <ResponsiveContainer width="100%" height={300}>
-                  <AreaChart data={detail.priceData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis dataKey="time" stroke="#666" />
-                    <YAxis stroke="#666" domain={['dataMin - 500', 'dataMax + 500']} />
-                    <Tooltip
-                      contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
-                      labelStyle={{ color: '#fff' }}
-                    />
-                    <Legend />
-                    <Area type="monotone" dataKey="price" stroke="#667eea" fill="rgba(102,126,234,0.3)" name="실제 가격" />
-                    <Area type="monotone" dataKey="prediction" stroke="#43e97b" fill="rgba(67,233,123,0.2)" name="예측 가격" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
             {/* Key Findings - 신뢰도 필터링 발견 */}
             <div style={{ marginBottom: '48px' }}>
               <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
