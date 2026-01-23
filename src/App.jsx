@@ -893,7 +893,7 @@ const Portfolio = () => {
                     📈 실시간 대시보드 열기
                   </button>
                   <a
-                    href="https://github.com/your-username/crypto-dashboard"
+                    href="https://github.com/gyyi0718/crypto-dashboard"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
