@@ -153,7 +153,7 @@ const Portfolio = () => {
       architecture: [
         { step: 1, title: 'X-ray Input', desc: 'X-ray DICOM 로드 후 DICOM영상 별 파이프라인에 맞게 변환' },
         { step: 2, title: 'Segmentation', desc: '딥러닝 모델로 척추/각 척추체(vertebra) 영역을 마스크로 생성' },
-        { step: 3, title: 'Apex Vertebra Detection', desc: '1. 마스크에서 척추 객체 윤곽선 추출 2. 척추 객체의 중심점 계산 그리고 각 척추의 기울기 추정을 위한 회전 바운딩 박스 계산 3. 척추 만곡의 Apex vertebra 자동 선택: 첫 척추 대비 x-편차 최대인 척추 선택 4.Apex 위/아래에서 End vertebra 자동 선택 5.선택된 End vertebra에서 종판(endplate) 방향 선분 좌표 추출' },
+        { step: 3, title: 'Apex Vertebra Detection', desc: '1. 마스크에서 척추 객체 윤곽선 추출 \n 2. 척추 객체의 중심점 계산 그리고 각 척추의 기울기 추정을 위한 회전 바운딩 박스 계산 \n 3. 척추 만곡의 Apex vertebra 자동 선택: 첫 척추 대비 x-편차 최대인 척추 선택 \n 4.Apex 위/아래에서 End vertebra 자동 선택 5.선택된 End vertebra에서 종판(endplate) 방향 선분 좌표 추출' },
         { step: 4, title: 'Angle Calculation', desc: '1. 위/아래 End vertebra의 기울기 각도 계산 2. 각도 방향성(0~360°) 문제 보정 로직 적용 3. Cobbs angle 자동 계산' }
       ],
       metrics: [],
