@@ -76,21 +76,19 @@ const Portfolio = () => {
     12: {
       title: '암호화폐 자동매매 시스템',
       subtitle: 'Deep Learning 기반 시계열 예측 트레이딩 봇',
-      overview: 'N-BEATS, Autoformer, TCN 등 다양한 시계열 예측 아키텍처를 활용하여 암호화폐 가격 방향을 예측하고 자동 매매를 수행하는 시스템입니다. BTCUSDT 단일 종목 대상으로 다중 모델 비교 실험을 수행하여 각 아키텍처의 특성과 한계를 분석했습니다.',
-      testAsset: 'BTCUSDT (Bitcoin/USDT Perpetual)',
-      testPeriod: '2025.12 - 2026.01 (약 1개월)',
+      overview: 'Autoformer, N-BEATS 등 시계열 예측 모델을 비교 분석하여 암호화폐 가격 방향을 예측하고, 신뢰도 기반 필터링으로 고확률 시그널에서만 거래를 수행하는 자동매매 시스템입니다. 백테스트 결과 N-BEATS 모델이 동일 조건에서 Autoformer 대비 압도적으로 우수한 성능을 보였습니다.',
       features: [
-        { icon: '🔬', title: '다중 모델 실험', desc: 'N-BEATS, Autoformer, TCN, PatchTST 모델 비교 분석' },
-        { icon: '🔄', title: '실시간 거래', desc: 'Bybit, Binance 다중 거래소 API 연동' },
-        { icon: '🛡️', title: '리스크 관리', desc: 'Stop-loss, Position sizing, Drawdown 모니터링' },
-        { icon: '📈', title: '백테스팅 파이프라인', desc: '과거 데이터 기반 전략 검증 및 성능 시각화' }
+        { icon: '🤖', title: '모델 비교 분석', desc: 'Autoformer vs N-BEATS 등 다양한 시계열 모델 백테스트 비교' },
+        { icon: '🎯', title: '신뢰도 필터링', desc: '예측 신뢰도 40% 이상 시그널만 거래 실행' },
+        { icon: '🛡️', title: '리스크 관리', desc: 'Stop-loss 2%, Take-profit 3%, 최대 보유 60분' },
+        { icon: '📈', title: 'N-BEATS 채택', desc: '백테스트 결과 N-BEATS가 최적 성능으로 확인' }
       ],
       architecture: [
-        { step: 1, title: 'Data Collection', desc: '거래소 API를 통한 실시간 OHLCV 데이터 수집' },
-        { step: 2, title: 'Feature Engineering', desc: '기술적 지표 (RSI, MACD, BB 등) 및 시퀀스 데이터 생성' },
-        { step: 3, title: 'Model Prediction', desc: '시계열 예측 모델을 통한 가격 방향 예측' },
-        { step: 4, title: 'Signal Generation', desc: '예측 결과 기반 매수/매도 신호 생성' },
-        { step: 5, title: 'Order Execution', desc: '거래소 API를 통한 자동 주문 실행' }
+        { step: 1, title: 'Data Collection', desc: 'Binance Futures API로 1분봉 OHLCV 수집' },
+        { step: 2, title: 'Feature Engineering', desc: 'Close, Volume 기반 96개 시퀀스 입력' },
+        { step: 3, title: 'Model Comparison', desc: 'Autoformer, N-BEATS 등 모델별 백테스트 비교' },
+        { step: 4, title: 'Confidence Filter', desc: '신뢰도 ≥ 0.4 시그널만 거래 실행' },
+        { step: 5, title: 'Order Execution', desc: '10x 레버리지, 잔고 50% 포지션 사이징' }
       ],
       priceData: [
         { time: '00:00', price: 42150, prediction: 42200, signal: 'hold' },
@@ -101,46 +99,25 @@ const Portfolio = () => {
         { time: '20:00', price: 43420, prediction: 43600, signal: 'buy' },
         { time: '24:00', price: 43850, prediction: 43900, signal: 'hold' }
       ],
-      backtestComparison: [
-        { model: 'N-BEATS', trades: 120, maxDD: 0.7, finalReturn: 0.4, winRate: 44, status: 'stable' },
-        { model: 'Autoformer', trades: 45000, maxDD: 95, finalReturn: -95, winRate: 15, status: 'failed' }
-      ],
-      modelAnalysis: [
-        { 
-          model: 'N-BEATS', 
-          pros: '보수적 매매, 낮은 드로우다운, 자본 보존',
-          cons: '낮은 수익률, Short 편향',
-          insight: '과적합 방지 및 리스크 관리에 효과적'
-        },
-        { 
-          model: 'Autoformer', 
-          pros: 'Transformer 기반 장기 의존성 학습',
-          cons: 'Long 편향, 과다 매매, 수수료 손실',
-          insight: '방향 예측만으로는 수익 창출 어려움'
+      keyFindings: [
+        {
+          title: '모델 아키텍처의 중요성',
+          before: { model: 'Autoformer', trades: '35,000+', drawdown: '100%', result: '파산' },
+          after: { model: 'N-BEATS', trades: '7', drawdown: '0.1%', result: '+0.05% 수익' },
+          insight: '동일한 신뢰도 필터(≥0.4)를 적용해도 모델 아키텍처에 따라 결과가 극적으로 달라짐. Autoformer는 과도한 시그널을 생성하여 과적합된 반면, N-BEATS는 보수적이고 신뢰할 수 있는 시그널만 생성'
         }
       ],
-      equityCurveData: [
-        { trade: 0, nbeats: 10000, autoformer: 10000 },
-        { trade: 20, nbeats: 9980, autoformer: 7500 },
-        { trade: 40, nbeats: 10030, autoformer: 5000 },
-        { trade: 60, nbeats: 9985, autoformer: 3000 },
-        { trade: 80, nbeats: 10040, autoformer: 1500 },
-        { trade: 100, nbeats: 10010, autoformer: 800 },
-        { trade: 120, nbeats: 10040, autoformer: 500 }
-      ],
-      keyFindings: [
-        '단순 방향 예측만으로는 수익 창출이 어려움',
-        '모델 아키텍처보다 매매 로직(필터링, 손절)이 더 중요',
-        'Transformer 계열 모델의 Long 편향 문제 확인',
-        'N-BEATS의 보수적 예측이 리스크 관리에 유리'
+      backtestComparison: [
+        { condition: 'Autoformer (신뢰도 ≥ 0.4)', trades: 35847, winRate: 20, maxDD: 100, pnl: -95 },
+        { condition: 'N-BEATS (신뢰도 ≥ 0.4)', trades: 7, winRate: 57, maxDD: 0.1, pnl: 0.05 }
       ],
       metrics: [
-        { label: 'N-BEATS Max DD', value: '0.7%', color: '#43e97b' },
-        { label: 'N-BEATS Trades', value: '120', color: '#667eea' },
-        { label: 'Autoformer Max DD', value: '95%', color: '#f5576c' },
-        { label: 'Autoformer Trades', value: '45,000', color: '#ff6b6b' }
+        { label: '거래 횟수', value: '7회', color: '#667eea' },
+        { label: 'Win Rate', value: '57%', color: '#43e97b' },
+        { label: 'Max Drawdown', value: '0.1%', color: '#4facfe' },
+        { label: 'Mean PnL', value: '+0.07%', color: '#43e97b' }
       ],
-      techStack: ['PyTorch', 'N-BEATS', 'Autoformer', 'TCN', 'Bybit API', 'Binance API', 'PostgreSQL', 'FastAPI', 'Matplotlib']
+      techStack: ['PyTorch', 'N-BEATS', 'Autoformer', 'Binance API', 'Bybit API', 'PostgreSQL', 'Streamlit', 'Supabase']
     },
     1: {
       title: 'Brain CAD System',
@@ -507,8 +484,8 @@ const Portfolio = () => {
       id: 12,
       title: '암호화폐 자동매매 시스템',
       category: 'Quant Trading',
-      description: 'TCN, PatchTST, N-BEATS 기반 시계열 예측 트레이딩 봇. 다중 거래소 지원.',
-      tech: ['PyTorch', 'N-BEATS', 'Bybit API'],
+      description: 'Autoformer vs N-BEATS 모델 비교를 통해 최적 전략을 도출한 자동매매 시스템.',
+      tech: ['PyTorch', 'N-BEATS', 'Autoformer', 'Bybit API'],
       gradient: 'linear-gradient(135deg, #c471f5 0%, #fa71cd 100%)',
       icon: '📈',
       hasDetail: true
@@ -621,126 +598,10 @@ const Portfolio = () => {
         {/* Charts Section - 암호화폐 자동매매 (ID: 12) */}
         {projectId === 12 && (
           <>
-            {/* Test Info */}
+            {/* Price Prediction Chart */}
             <div style={{ marginBottom: '48px' }}>
               <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                ⚙️ 테스트 환경
-              </h2>
-              <div style={{
-                padding: '24px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                gap: '24px'
-              }}>
-                <div>
-                  <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>테스트 자산</p>
-                  <p style={{ fontSize: '16px', color: '#fff', margin: 0, fontWeight: '600' }}>BTCUSDT</p>
-                  <p style={{ fontSize: '12px', color: '#888', margin: '4px 0 0' }}>Bitcoin Perpetual</p>
-                </div>
-                <div>
-                  <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>테스트 기간</p>
-                  <p style={{ fontSize: '16px', color: '#fff', margin: 0, fontWeight: '600' }}>2025.12 - 2026.01</p>
-                  <p style={{ fontSize: '12px', color: '#888', margin: '4px 0 0' }}>약 1개월</p>
-                </div>
-                <div>
-                  <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>초기 자본</p>
-                  <p style={{ fontSize: '16px', color: '#fff', margin: 0, fontWeight: '600' }}>$10,000</p>
-                  <p style={{ fontSize: '12px', color: '#888', margin: '4px 0 0' }}>USDT 기준</p>
-                </div>
-                <div>
-                  <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>거래소</p>
-                  <p style={{ fontSize: '16px', color: '#fff', margin: 0, fontWeight: '600' }}>Bybit</p>
-                  <p style={{ fontSize: '12px', color: '#888', margin: '4px 0 0' }}>Futures API</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Backtest Comparison Table */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                🔬 백테스트 결과 비교
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'rgba(255,255,255,0.02)',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
-                  {detail.backtestComparison.map((model, i) => (
-                    <div key={i} style={{
-                      padding: '24px',
-                      background: model.status === 'stable' ? 'rgba(67,233,123,0.05)' : 'rgba(245,87,108,0.05)',
-                      borderRadius: '12px',
-                      border: model.status === 'stable' ? '2px solid rgba(67,233,123,0.3)' : '2px solid rgba(245,87,108,0.3)'
-                    }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                        <h4 style={{ fontSize: '20px', color: '#fff', margin: 0 }}>{model.model}</h4>
-                        <span style={{
-                          padding: '4px 12px',
-                          borderRadius: '20px',
-                          fontSize: '12px',
-                          fontWeight: '600',
-                          background: model.status === 'stable' ? 'rgba(67,233,123,0.2)' : 'rgba(245,87,108,0.2)',
-                          color: model.status === 'stable' ? '#43e97b' : '#f5576c'
-                        }}>
-                          {model.status === 'stable' ? '✓ 안정' : '✗ 실패'}
-                        </span>
-                      </div>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
-                        <div>
-                          <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>총 거래 수</p>
-                          <p style={{ fontSize: '24px', color: '#fff', margin: 0, fontWeight: '600' }}>
-                            {model.trades.toLocaleString()}
-                          </p>
-                        </div>
-                        <div>
-                          <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>Max Drawdown</p>
-                          <p style={{ 
-                            fontSize: '24px', 
-                            color: model.maxDD < 5 ? '#43e97b' : '#f5576c', 
-                            margin: 0, 
-                            fontWeight: '600' 
-                          }}>
-                            {model.maxDD}%
-                          </p>
-                        </div>
-                        <div>
-                          <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>최종 수익률</p>
-                          <p style={{ 
-                            fontSize: '24px', 
-                            color: model.finalReturn >= 0 ? '#43e97b' : '#f5576c', 
-                            margin: 0, 
-                            fontWeight: '600' 
-                          }}>
-                            {model.finalReturn > 0 ? '+' : ''}{model.finalReturn}%
-                          </p>
-                        </div>
-                        <div>
-                          <p style={{ fontSize: '12px', color: '#666', margin: '0 0 4px' }}>승률</p>
-                          <p style={{ 
-                            fontSize: '24px', 
-                            color: model.winRate >= 45 ? '#4facfe' : '#f5576c', 
-                            margin: 0, 
-                            fontWeight: '600' 
-                          }}>
-                            {model.winRate}%
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Equity Curve Comparison */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                📈 자본 곡선 비교 (Equity Curve)
+                📊 가격 예측 vs 실제 가격
               </h2>
               <div style={{
                 padding: '32px',
@@ -749,183 +610,152 @@ const Portfolio = () => {
                 border: '1px solid rgba(255,255,255,0.06)'
               }}>
                 <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={detail.equityCurveData}>
+                  <AreaChart data={detail.priceData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                    <XAxis dataKey="trade" stroke="#666" label={{ value: 'Trade #', position: 'bottom', fill: '#666' }} />
-                    <YAxis stroke="#666" domain={[0, 11000]} label={{ value: 'Capital ($)', angle: -90, position: 'insideLeft', fill: '#666' }} />
+                    <XAxis dataKey="time" stroke="#666" />
+                    <YAxis stroke="#666" domain={['dataMin - 500', 'dataMax + 500']} />
                     <Tooltip
                       contentStyle={{ background: '#1a1a2e', border: '1px solid #333', borderRadius: '8px' }}
-                      formatter={(value) => [`$${value.toLocaleString()}`, '']}
+                      labelStyle={{ color: '#fff' }}
                     />
                     <Legend />
-                    <Line type="monotone" dataKey="nbeats" stroke="#43e97b" strokeWidth={3} name="N-BEATS" dot={false} />
-                    <Line type="monotone" dataKey="autoformer" stroke="#f5576c" strokeWidth={3} name="Autoformer" dot={false} />
-                  </LineChart>
+                    <Area type="monotone" dataKey="price" stroke="#667eea" fill="rgba(102,126,234,0.3)" name="실제 가격" />
+                    <Area type="monotone" dataKey="prediction" stroke="#43e97b" fill="rgba(67,233,123,0.2)" name="예측 가격" />
+                  </AreaChart>
                 </ResponsiveContainer>
-                <p style={{ fontSize: '12px', color: '#666', textAlign: 'center', marginTop: '16px' }}>
-                  * 초기 자본 $10,000 기준, BTCUSDT 백테스트 결과
-                </p>
               </div>
             </div>
 
-            {/* Model Analysis Cards */}
+            {/* Key Findings - 신뢰도 필터링 발견 */}
             <div style={{ marginBottom: '48px' }}>
               <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                🔍 모델별 분석
+                💡 Key Findings
               </h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
-                {detail.modelAnalysis.map((analysis, i) => (
-                  <div key={i} style={{
-                    padding: '24px',
-                    background: 'rgba(255,255,255,0.02)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(255,255,255,0.06)'
-                  }}>
-                    <h4 style={{ fontSize: '18px', color: '#667eea', margin: '0 0 16px' }}>{analysis.model}</h4>
-                    <div style={{ marginBottom: '12px' }}>
-                      <p style={{ fontSize: '12px', color: '#43e97b', margin: '0 0 4px', fontWeight: '600' }}>✓ 장점</p>
-                      <p style={{ fontSize: '14px', color: '#aaa', margin: 0 }}>{analysis.pros}</p>
-                    </div>
-                    <div style={{ marginBottom: '12px' }}>
-                      <p style={{ fontSize: '12px', color: '#f5576c', margin: '0 0 4px', fontWeight: '600' }}>✗ 단점</p>
-                      <p style={{ fontSize: '14px', color: '#aaa', margin: 0 }}>{analysis.cons}</p>
-                    </div>
+              {detail.keyFindings && detail.keyFindings.map((finding, i) => (
+                <div key={i} style={{
+                  padding: '32px',
+                  background: 'linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(102,126,234,0.3)',
+                  marginBottom: '24px'
+                }}>
+                  <h3 style={{ fontSize: '20px', color: '#667eea', margin: '0 0 24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    🎯 {finding.title}
+                  </h3>
+                  
+                  {/* Before vs After 비교 */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 60px 1fr', gap: '20px', alignItems: 'center', marginBottom: '24px' }}>
+                    {/* Before - Autoformer */}
                     <div style={{
-                      padding: '12px',
-                      background: 'rgba(102,126,234,0.1)',
-                      borderRadius: '8px',
-                      marginTop: '16px'
+                      padding: '24px',
+                      background: 'rgba(245,87,108,0.1)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(245,87,108,0.3)'
                     }}>
-                      <p style={{ fontSize: '12px', color: '#667eea', margin: '0 0 4px', fontWeight: '600' }}>💡 인사이트</p>
-                      <p style={{ fontSize: '14px', color: '#ccc', margin: 0 }}>{analysis.insight}</p>
+                      <p style={{ fontSize: '14px', color: '#f5576c', margin: '0 0 16px', fontWeight: '600' }}>❌ {finding.before.model}</p>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+                        <div>
+                          <p style={{ fontSize: '11px', color: '#888', margin: '0 0 4px' }}>거래</p>
+                          <p style={{ fontSize: '18px', color: '#fff', margin: 0, fontWeight: '600' }}>{finding.before.trades}</p>
+                        </div>
+                        <div>
+                          <p style={{ fontSize: '11px', color: '#888', margin: '0 0 4px' }}>Drawdown</p>
+                          <p style={{ fontSize: '18px', color: '#f5576c', margin: 0, fontWeight: '600' }}>{finding.before.drawdown}</p>
+                        </div>
+                        <div>
+                          <p style={{ fontSize: '11px', color: '#888', margin: '0 0 4px' }}>결과</p>
+                          <p style={{ fontSize: '18px', color: '#f5576c', margin: 0, fontWeight: '600' }}>{finding.before.result}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Arrow */}
+                    <div style={{ textAlign: 'center', fontSize: '24px' }}>→</div>
+                    
+                    {/* After - N-BEATS */}
+                    <div style={{
+                      padding: '24px',
+                      background: 'rgba(67,233,123,0.1)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(67,233,123,0.3)'
+                    }}>
+                      <p style={{ fontSize: '14px', color: '#43e97b', margin: '0 0 16px', fontWeight: '600' }}>✅ {finding.after.model}</p>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+                        <div>
+                          <p style={{ fontSize: '11px', color: '#888', margin: '0 0 4px' }}>거래</p>
+                          <p style={{ fontSize: '18px', color: '#fff', margin: 0, fontWeight: '600' }}>{finding.after.trades}</p>
+                        </div>
+                        <div>
+                          <p style={{ fontSize: '11px', color: '#888', margin: '0 0 4px' }}>Drawdown</p>
+                          <p style={{ fontSize: '18px', color: '#43e97b', margin: 0, fontWeight: '600' }}>{finding.after.drawdown}</p>
+                        </div>
+                        <div>
+                          <p style={{ fontSize: '11px', color: '#888', margin: '0 0 4px' }}>결과</p>
+                          <p style={{ fontSize: '18px', color: '#43e97b', margin: 0, fontWeight: '600' }}>{finding.after.result}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                  
+                  {/* Insight */}
+                  <div style={{
+                    padding: '16px 20px',
+                    background: 'rgba(255,255,255,0.05)',
+                    borderRadius: '8px',
+                    borderLeft: '4px solid #667eea'
+                  }}>
+                    <p style={{ fontSize: '14px', color: '#ccc', margin: 0, lineHeight: '1.7' }}>
+                      💡 <strong>Insight:</strong> {finding.insight}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            {/* Key Findings */}
+            {/* Backtest Comparison Table */}
             <div style={{ marginBottom: '48px' }}>
               <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                📋 주요 발견사항
+                📊 백테스트 결과 비교
               </h2>
               <div style={{
                 padding: '32px',
-                background: 'linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)',
+                background: 'rgba(255,255,255,0.02)',
                 borderRadius: '16px',
-                border: '1px solid rgba(102,126,234,0.2)'
+                border: '1px solid rgba(255,255,255,0.06)',
+                overflowX: 'auto'
               }}>
-                <div style={{ display: 'grid', gap: '16px' }}>
-                  {detail.keyFindings.map((finding, i) => (
-                    <div key={i} style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '12px'
-                    }}>
-                      <span style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        background: 'rgba(102,126,234,0.3)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '12px',
-                        color: '#667eea',
-                        fontWeight: '600',
-                        flexShrink: 0
-                      }}>
-                        {i + 1}
-                      </span>
-                      <p style={{ fontSize: '15px', color: '#ccc', margin: 0, lineHeight: '1.6' }}>{finding}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Live Trading Dashboard Link */}
-            <div style={{ marginBottom: '48px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '600', color: '#fff', margin: '0 0 24px' }}>
-                🚀 실시간 페이퍼 트레이딩
-              </h2>
-              <div style={{
-                padding: '32px',
-                background: 'linear-gradient(135deg, rgba(67,233,123,0.1) 0%, rgba(79,172,254,0.1) 100%)',
-                borderRadius: '16px',
-                border: '2px solid rgba(67,233,123,0.3)',
-                textAlign: 'center'
-              }}>
-                <div style={{ fontSize: '48px', marginBottom: '16px' }}>📊</div>
-                <h3 style={{ fontSize: '20px', color: '#fff', margin: '0 0 12px' }}>
-                  Live Paper Trading Dashboard
-                </h3>
-                <p style={{ fontSize: '14px', color: '#888', margin: '0 0 24px', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
-                  N-BEATS 모델이 24시간 자동으로 트레이딩하는 결과를 실시간으로 확인하세요.
-                  BTC, ETH, SOL, XRP, DOGE, BNB 6개 심볼을 동시에 모니터링합니다.
-                </p>
-                <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <button
-                    onClick={() => window.open('https://crypto-dashboard-eogy62m7vg4bdencfkytwg.streamlit.app', '_blank')}
-                    style={{
-                      padding: '14px 32px',
-                      background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                      border: 'none',
-                      borderRadius: '8px',
-                      color: '#000',
-                      fontSize: '16px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      transition: 'transform 0.2s, box-shadow 0.2s'
-                    }}
-                    onMouseOver={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 8px 20px rgba(67,233,123,0.4)';
-                    }}
-                    onMouseOut={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = 'none';
-                    }}
-                  >
-                    📈 실시간 대시보드 열기
-                  </button>
-                  <a
-                    href="https://github.com/gyyi0718/crypto-dashboard"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      padding: '14px 32px',
-                      background: 'transparent',
-                      border: '2px solid rgba(255,255,255,0.2)',
-                      borderRadius: '8px',
-                      color: '#fff',
-                      fontSize: '16px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      textDecoration: 'none',
-                      transition: 'border-color 0.2s'
-                    }}
-                  >
-                    💻 GitHub 소스코드
-                  </a>
-                </div>
-                <div style={{
-                  marginTop: '24px',
-                  padding: '16px',
-                  background: 'rgba(0,0,0,0.3)',
-                  borderRadius: '8px',
-                  display: 'inline-block'
-                }}>
-                  <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>
-                    💡 배포: <a href="https://streamlit.io/cloud" target="_blank" rel="noopener noreferrer" style={{ color: '#4facfe' }}>Streamlit Cloud</a> (무료 호스팅)
-                  </p>
-                </div>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr>
+                      <th style={{ padding: '16px', textAlign: 'left', borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#888', fontSize: '13px' }}>조건</th>
+                      <th style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#888', fontSize: '13px' }}>거래 횟수</th>
+                      <th style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#888', fontSize: '13px' }}>승률</th>
+                      <th style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#888', fontSize: '13px' }}>Max DD</th>
+                      <th style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#888', fontSize: '13px' }}>PnL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {detail.backtestComparison && detail.backtestComparison.map((row, i) => (
+                      <tr key={i} style={{ background: i === 1 ? 'rgba(67,233,123,0.05)' : 'transparent' }}>
+                        <td style={{ padding: '16px', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#fff', fontSize: '14px' }}>
+                          {i === 1 && '✅ '}{row.condition}
+                        </td>
+                        <td style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#fff', fontSize: '14px' }}>
+                          {row.trades.toLocaleString()}
+                        </td>
+                        <td style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', color: row.winRate >= 50 ? '#43e97b' : '#f5576c', fontSize: '14px', fontWeight: '600' }}>
+                          {row.winRate}%
+                        </td>
+                        <td style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', color: row.maxDD > 10 ? '#f5576c' : '#43e97b', fontSize: '14px', fontWeight: '600' }}>
+                          -{row.maxDD}%
+                        </td>
+                        <td style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid rgba(255,255,255,0.05)', color: row.pnl >= 0 ? '#43e97b' : '#f5576c', fontSize: '14px', fontWeight: '600' }}>
+                          {row.pnl >= 0 ? '+' : ''}{row.pnl}%
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </>
