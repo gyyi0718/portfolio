@@ -13,7 +13,7 @@ const Portfolio = () => {
     birthDate: '1990년 07월 18일',
     email: 'gyyi0718@gmail.com',
     title: 'AI/ML Engineer & Medical Imaging Specialist',
-    summary: '6년 9개월 경력의 AI/ML 엔지니어. 의료 영상 AI, 컴퓨터 비전, 산업용 검사 시스템 개발 전문가.'
+    summary: '5년 경력의 AI/ML 엔지니어. 의료 영상 AI, 컴퓨터 비전, 산업용 검사 시스템 개발 전문가.'
   };
 
   const careers = [
