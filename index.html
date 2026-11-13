@@ -1,13 +1,523 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이경윤 — Computer Vision & Medical AI Engineer</title>
+<meta name="description" content="의료영상(CT·MRI·X-ray·WSI·수술영상) AI와 산업용 비전 검사 시스템을 현장까지 올려 온 7년. 지금은 의료 AI 데이터 라벨링·QA 플랫폼을 설계부터 운영까지 맡고 있습니다.">
+<meta property="og:title" content="이경윤 — Computer Vision & Medical AI Engineer">
+<meta property="og:description" content="의료영상 AI · 산업 비전 · 실감 미디어 · 의료 AI 플랫폼. 연구실 알고리즘을 현장에서 돌아가는 제품으로.">
+<meta property="og:image" content="https://gyyi0718.github.io/portfolio/assets/img/icg-surgery.jpg">
+<meta property="og:type" content="profile">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --paper:#F3F5F4; --paper-2:#E9EDEC; --ink:#10212E; --ink-2:#51606B; --ink-3:#8A96A0;
+  --line:#D5DCDF; --icg:#149C6C; --icg-soft:#DDF3EA; --icg-ink:#0B6A48;
+  --max:1120px; --col:720px; --rail:176px;
+  --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E181F; --paper-2:#152129; --ink:#E7ECEE; --ink-2:#A9B6BE; --ink-3:#71818C;
+    --line:#26343D; --icg:#33C48D; --icg-soft:#143328; --icg-ink:#7EE2B9;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E181F; --paper-2:#152129; --ink:#E7ECEE; --ink-2:#A9B6BE; --ink-3:#71818C;
+  --line:#26343D; --icg:#33C48D; --icg-soft:#143328; --icg-ink:#7EE2B9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.65;
+  font-feature-settings:"tnum" 1;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .15s}
+a:hover{border-color:var(--icg)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--icg);outline-offset:3px;border-radius:2px}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3,h4{margin:0;line-height:1.2;letter-spacing:-.015em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+@media (min-width:1024px){.wrap{padding:0 32px}}
+
+/* ---------- top bar ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;font-size:14px;color:var(--ink-2)}
+.top .name{font-weight:700;color:var(--ink);border:0}
+.top nav{display:none;gap:22px}
+.top nav a{border:0}
+.top nav a:hover{color:var(--icg-ink)}
+@media (min-width:760px){.top nav{display:flex}}
+
+/* ---------- hero ---------- */
+.hero{padding:40px 0 56px}
+.hero-grid{display:grid;gap:28px;align-items:end}
+@media (min-width:900px){.hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px}}
+.hero h1{font-size:clamp(40px,6.2vw,66px);font-weight:800;letter-spacing:-.03em;line-height:1.06}
+.hero h1 small{display:block;font-size:.42em;font-weight:500;letter-spacing:-.01em;color:var(--ink-2);margin-top:14px}
+.hero .lede{margin-top:26px;font-size:18px;line-height:1.6;max-width:34em;color:var(--ink)}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:14px;color:var(--ink-2)}
+.hero .meta a{border-bottom-color:transparent}
+.hero .meta a:hover{border-bottom-color:var(--icg)}
+.figure{position:relative;margin:0;border-radius:6px;overflow:hidden;background:#000}
+.figure img{width:100%;aspect-ratio:962/728;object-fit:cover}
+.figure figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;font-size:12.5px;line-height:1.4;color:#E8F7F0;
+  background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
+.figure .tag{position:absolute;top:12px;left:12px;background:var(--icg);color:#04261A;font-size:12px;font-weight:700;padding:3px 8px;border-radius:3px}
+
+/* ---------- section scaffolding ---------- */
+.section{padding:56px 0;border-top:1px solid var(--line)}
+.section-grid{display:grid;gap:18px}
+@media (min-width:1024px){.section-grid{grid-template-columns:var(--rail) minmax(0,1fr);gap:40px}}
+.section h2{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.section .rail{color:var(--ink-2);font-size:14px}
+@media (min-width:1024px){.section .rail{position:sticky;top:28px;align-self:start}}
+.section .rail p{margin-top:8px;max-width:20em;color:var(--ink-3)}
+.body{max-width:var(--col)}
+.body-wide{max-width:100%}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+@media (min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{padding:18px 0 20px;border-bottom:1px solid var(--line)}
+.stat b{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.stat span{display:block;margin-top:8px;font-size:13.5px;color:var(--ink-2);max-width:14em}
+.skills{margin-top:28px;display:grid;gap:10px 18px;grid-template-columns:1fr}
+@media (min-width:640px){.skills{grid-template-columns:auto 1fr}}
+.skills dt{font-size:13.5px;color:var(--ink-2);padding-top:2px}
+.skills dd{margin:0;font-size:15px}
+@media (max-width:639px){.skills dd{margin-bottom:6px}}
+
+/* ---------- timeline ---------- */
+.timeline{position:relative;padding-left:22px;border-left:2px solid var(--line)}
+.tl{position:relative;padding:0 0 26px 0}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:"";position:absolute;left:-28px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--ink-3)}
+.tl.now::before{background:var(--icg);border-color:var(--icg)}
+.tl .when{font-size:13.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tl h3{font-size:18px;font-weight:700;margin-top:3px}
+.tl h3 span{font-weight:500;color:var(--ink-2)}
+.tl p{margin-top:5px;color:var(--ink-2);font-size:15px}
+
+/* ---------- projects ---------- */
+.employer{padding:28px 0 8px}
+.employer:first-child{padding-top:0}
+.employer h3{font-size:14px;font-weight:600;color:var(--ink-2);padding-bottom:10px;border-bottom:1px solid var(--line)}
+.project{display:grid;gap:16px;padding:26px 0;border-bottom:1px solid var(--line)}
+.project:last-child{border-bottom:0}
+@media (min-width:860px){.project{grid-template-columns:minmax(0,1fr) 300px;gap:32px}.project.wide{grid-template-columns:minmax(0,1fr) 360px}}
+.project h4{font-size:19px;font-weight:700;letter-spacing:-.02em}
+.project .sub{margin-top:4px;color:var(--ink-2);font-size:14.5px}
+.project ul{margin-top:12px;display:grid;gap:6px}
+.project li{position:relative;padding-left:14px;font-size:15px}
+.project li::before{content:"";position:absolute;left:0;top:.68em;width:6px;height:2px;background:var(--ink-3)}
+.project .stack{margin-top:12px;font-size:13.5px;color:var(--ink-3)}
+.project .nums{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.project .nums b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.project .nums span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px}
+.project figure{margin:0}
+.project figure img{border-radius:4px;border:1px solid var(--line);background:#000}
+.project figcaption{font-size:12.5px;color:var(--ink-3);margin-top:6px;line-height:1.45}
+.two{display:grid;gap:8px}
+@media (min-width:860px){.project figure.two{grid-template-columns:1fr}}
+
+/* ---------- how I work ---------- */
+.how{display:grid;gap:14px 28px;grid-template-columns:1fr}
+@media (min-width:640px){.how{grid-template-columns:1fr 1fr}}
+.how div{padding:14px 0;border-top:1px solid var(--line)}
+.how h3{font-size:16px;font-weight:700}
+.how p{margin-top:6px;font-size:14.5px;color:var(--ink-2)}
+
+/* ---------- education / contact ---------- */
+.rows{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:120px 1fr;gap:12px;font-size:15px}
+.row .k{color:var(--ink-2);font-size:14px;font-variant-numeric:tabular-nums}
+.contact{margin-top:6px;font-size:17px}
+.contact a{font-weight:600}
+.note{margin-top:14px;font-size:13.5px;color:var(--ink-3)}
+footer{padding:36px 0 48px;font-size:13px;color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;border-bottom:1px solid var(--line)}
+
+/* ---------- print ---------- */
+@media print{
+  :root{--paper:#fff;--paper-2:#fff;--ink:#111;--ink-2:#444;--ink-3:#666;--line:#ccc;--icg:#0B6A48;--icg-soft:#eee;--icg-ink:#0B6A48}
+  body{font-size:11.5pt}
+  .top nav,footer button,.figure .tag{display:none}
+  .hero{padding:12pt 0}
+  .section{padding:16pt 0;break-inside:auto}
+  .project,.employer{break-inside:avoid}
+  .section-grid{grid-template-columns:120pt 1fr;gap:16pt}
+  .section .rail{position:static}
+  .project{grid-template-columns:1fr 150pt}
+  a{border:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <a class="name" href="#top">이경윤</a>
+  <nav aria-label="페이지 내 이동">
+    <a href="#glance">한눈에</a>
+    <a href="#career">경력</a>
+    <a href="#projects">프로젝트</a>
+    <a href="#personal">개인 프로젝트</a>
+    <a href="#how">일하는 방식</a>
+    <a href="#contact">연락</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <h1>연구실 알고리즘을<br>현장에서 돌아가는<br>제품으로.
+        <small>이경윤 · Computer Vision &amp; Medical AI Engineer</small>
+      </h1>
+      <p class="lede">의료영상(CT·MRI·X-ray·WSI·수술영상) 분석 모델과 산업용 비전 검사 시스템을 7년간 개발해 실제 운영 환경까지 올렸습니다. 지금은 의료 AI 데이터 라벨링·QA 플랫폼을 설계부터 운영까지 혼자 맡고 있습니다.</p>
+      <div class="meta">
+        <a href="mailto:gyyi0718@gmail.com">gyyi0718@gmail.com</a>
+        <a href="https://github.com/gyyi0718" rel="me">github.com/gyyi0718</a>
+        <span>경기 광주 · 서울 근무</span>
+      </div>
+    </div>
+    <figure class="figure">
+      <span class="tag">브라우저 AI 자동 라벨링</span>
+      <img src="assets/img/icg-surgery.jpg" width="962" height="728" alt="ICG 형광 담낭절제술 영상 위에 담낭, 간, 총담관, 담관 세그멘테이션이 색으로 겹쳐진 화면" fetchpriority="high">
+      <figcaption>ICG 형광 담낭절제술 영상. 담낭·간·총담관·담관을 YOLO-seg 모델이 라벨러 PC의 브라우저에서 직접 분할합니다. 서버에 GPU가 없어 추론을 브라우저로 옮겼습니다.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="glance">
+  <div class="section-grid">
+    <div class="rail"><h2>한눈에</h2><p>의료영상에서 시작해 산업 비전, 실감 미디어를 거쳐 다시 의료 AI 플랫폼으로.</p></div>
+    <div class="body-wide">
+      <div class="stats">
+        <div class="stat"><b>7년</b><span>컴퓨터비전·딥러닝 개발 경력 (2018.10 ~)</span></div>
+        <div class="stat"><b>15+</b><span>의료영상·산업비전 프로젝트</span></div>
+        <div class="stat"><b>4종</b><span>운영 중인 라벨링 툴 (3D/X-ray · 수술영상 · 병리 · LLM 평가)</span></div>
+        <div class="stat"><b>99.2%</b><span>철도 볼트 결함 검출 F1 (라인스캔 2048×16384)</span></div>
+      </div>
+      <dl class="skills">
+        <dt>언어</dt><dd>Python, C++ (MFC), TypeScript, C#</dd>
+        <dt>CV · 딥러닝</dt><dd>PyTorch, TensorFlow/Keras, OpenCV, YOLO v3/v4/seg, SAM·MobileSAM, U-Net·DenseNet·ResNet, 3D CNN, nnU-Net, ONNX Runtime Web</dd>
+        <dt>의료영상</dt><dd>ITK·VTK, DICOM·NIfTI, 3D Rigid Registration, WSI (Aperio/OpenSlide), Visual Odometry</dd>
+        <dt>백엔드 · 인프라</dt><dd>FastAPI, PostgreSQL·MySQL, Docker·nginx, JWT/SSO, Linux 서버 운영, Bitbucket·Jira 자동화</dd>
+        <dt>프론트 · 앱</dt><dd>Vue3·Vuetify, vtk.js (VolView fork), Electron, MFC 데스크톱 앱</dd>
+        <dt>생성형 AI</dt><dd>LLM API, RAG·Agent 평가 체계 설계, LLM judge, 에이전트 기반 데이터 파이프라인</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="career">
+  <div class="section-grid">
+    <div class="rail"><h2>경력</h2><p>병원 연구실 두 곳, 산업 비전 기업, 4DX 실감 미디어, 그리고 의료 AI 스타트업.</p></div>
+    <div class="body">
+      <ol class="timeline">
+        <li class="tl now">
+          <div class="when">2026.07 ~ 현재</div>
+          <h3>메디워크AI <span>· AI 개발 / 의료 AI 인프라 · 대리</span></h3>
+          <p>개발 인력 1인 체제. 모델 학습·서빙 환경, 데이터 파이프라인, 라벨링 툴 4종, QA 엔진을 단독으로 설계·구축·운영.</p>
+        </li>
+        <li class="tl">
+          <div class="when">2022.06 ~ 2025.09</div>
+          <h3>CJ 4DPLEX <span>· 기술연구소 모션코드 개발 · Specialist</span></h3>
+          <p>수작업으로 저작하던 4DX 모션코드를 영상·음향·포즈 분석으로 자동 생성하는 MCI 시스템 개발. 2023.12 ~ 2025.05 육아휴직.</p>
+        </li>
+        <li class="tl">
+          <div class="when">2021.10 ~ 2022.05</div>
+          <h3>서울특별시 보라매병원 <span>· 의료영상 AI 연구 · 연구원</span></h3>
+          <p>CT 전이암 3D Detection 모델 개발, 병변 크기·유형별로 수련의 판독과 성능 비교.</p>
+        </li>
+        <li class="tl">
+          <div class="when">2020.08 ~ 2021.07</div>
+          <h3>투아이시스 <span>· 비전검사 시스템 개발 · 대리</span></h3>
+          <p>철도 시설물 육안 점검을 YOLO 기반 자동검사로 전환하고 알람을 지상 관제장치에 연동.</p>
+        </li>
+        <li class="tl">
+          <div class="when">2018.10 ~ 2020.06</div>
+          <h3>가천대학교 길병원 <span>· 의료영상 AI 연구 · 연구원</span></h3>
+          <p>ITK/VTK 기반 CAD 소프트웨어와 딥러닝 모델 개발. 심평원 과제 Cobb Angle 자동측정 수행.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-grid">
+    <div class="rail"><h2>프로젝트</h2><p>최근 순. 성능 수치는 실측값이고, 검증 범위에 한계가 있으면 함께 적었습니다.</p></div>
+    <div class="body-wide">
+
+      <div class="employer">
+        <h3>메디워크AI · 2026.07 ~ 현재</h3>
+
+        <article class="project wide">
+          <div>
+            <h4>의료 AI 데이터 라벨링·QA 플랫폼</h4>
+            <p class="sub">4개 라벨링 툴 → 공통 허브 API → 단일 QA 원장. 설계·개발·배포·운영 총괄.</p>
+            <ul>
+              <li>3D/X-ray DICOM, 수술영상, 병리 WSI, LLM 답변 평가까지 4종 툴을 FastAPI 허브(SSO JWT 인증, 계정·역할, 판독자 자격 원장, 프로젝트 레지스트리)로 묶음</li>
+              <li>QA 엔진: Dice·IoU(세그), Cohen κ·Fleiss κ(분류) 자동 계산, append-only 원장과 manifest hash 봉인으로 FDA 510(k)·식약처 증빙 리포트까지 한 흐름</li>
+              <li>MySQL → PostgreSQL 전환, 허브 API 4단계 무중단 분리, docker secrets 시크릿화, nginx 업스트림 고정으로 생긴 404 장애의 근본 원인 수정</li>
+              <li>5개 저장소 Bitbucket 편입, PR 머지 → Jira 티켓 자동 완료, HANDOFF 문서와 22쪽 사용 가이드 유지</li>
+            </ul>
+            <p class="stack">Vue3 · Vuetify · vtk.js · TypeScript · FastAPI · onnxruntime-web · PostgreSQL · Docker · nginx · Electron</p>
+          </div>
+          <figure>
+            <img src="assets/img/wsi-pathoannot.jpg" width="1185" height="722" alt="PathoAnnot 병리 WSI 라벨링 툴 화면. 슬라이드 위 패치 그리드와 세포 단위 바운딩박스, 우측에 9개 세포 클래스 목록" loading="lazy">
+            <figcaption>병리 WSI 툴 PathoAnnot. 40,960×20,608px 슬라이드에서 관심영역 → 패치 → 세포 9클래스로 내려가는 계층형 라벨링, 세포 BBox 2,059개.</figcaption>
+          </figure>
+        </article>
+
+        <article class="project">
+          <div>
+            <h4>수술영상 라벨링 툴과 브라우저 AI 자동 라벨링</h4>
+            <p class="sub">GPU 없는 서버 → 추론을 라벨러 PC 브라우저로 옮겨 서버 부하 없이 AI 라벨링 제공.</p>
+            <ul>
+              <li>v1 YOLO 박스 + SAM mask_decoder 파인튜닝 → v2 YOLO-seg 단일 모델로 교체해 집게 침범 제거, 모델 다운로드 376MB 절감</li>
+              <li>ONNX 내보내기 후 onnxruntime-web 실행. WebGPU 실패 시 WASM, 모델 부재 시 서버 추론으로 3단 폴백</li>
+              <li>블러·모폴로지·파편 제거 후처리를 Python에서 JS로 동등 이식, 업로드 시 RGB 분석으로 ICG 영상 자동 판별</li>
+              <li>미시작 → 진행중 → 검수대기 → 승인/반려 상태 머신, 라벨러별 분리 저장, 30초 자동 저장</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project">
+          <div>
+            <h4>3D·X-ray DICOM 라벨링 툴과 설치형 Local Labeler</h4>
+            <p class="sub">Kitware VolView를 포크해 라벨링 전용 엔트리를 만들고, Electron 데스크톱 앱으로 확장.</p>
+            <ul>
+              <li>3D 볼륨/2D X-ray 브러시·폴리곤 라벨링, 라벨러별 분리 저장으로 3인 다중 판독 지원</li>
+              <li>200px 대형 브러시 페인트 성능 최적화, 브러시 상한을 영상 크기에 비례해 자동 산정</li>
+              <li>프로젝트별 JupyterLab 노트북 자동 프로비저닝 → 라벨 클래스 배열 생성 → U-Net 학습·평가 셀까지 연동</li>
+              <li>NIH Montgomery 흉부 X-ray로 라벨링 → 학습 전 과정 검증</li>
+            </ul>
+            <div class="nums">
+              <div><b>0.962</b><span>Montgomery Dice</span></div>
+              <div><b>3인</b><span>다중 판독 분리 저장</span></div>
+              <div><b>v1.0.7</b><span>데스크톱 앱 릴리스</span></div>
+            </div>
+          </div>
+          <figure>
+            <img src="assets/img/xray-volview.jpg" width="1009" height="600" alt="요추 X-ray 세 장. 원본, 추체 자동 박스, MobileSAM 마스크가 색으로 겹쳐진 결과" loading="lazy">
+            <figcaption>3D/X-ray DICOM 툴(VolView fork)의 요추 자동 세그 파이프라인. CLAHE 전처리 → 추체 자동 박스 → MobileSAM 마스크로 라벨링 초안 생성.</figcaption>
+          </figure>
+        </article>
+      </div>
+
+      <div class="employer">
+        <h3>CJ 4DPLEX · 2022.06 ~ 2025.09</h3>
+        <article class="project wide">
+          <div>
+            <h4>MCI — 영상 분석 기반 4DX 모션코드 자동 생성</h4>
+            <p class="sub">전문 작업자가 손으로 저작하던 모션코드를 영상·사운드·인물 관절 세 갈래 분석으로 Roll/Pitch/Heave 3축 제어 데이터로 생성.</p>
+            <ul>
+              <li>Camera 모듈: Monocular Visual Odometry로 특징점을 추적해 6DOF 카메라 궤적 → Roll·Pitch 모션</li>
+              <li>Sound 모듈: FFT 기반 비트·템포·특징음 추출 → Heave 모션</li>
+              <li>Joint 모듈: Pose Estimation으로 인물 관절 추출 → Roll·Heave 모션</li>
+              <li>검증: 생성 모션과 스튜디오 마스터 모션의 파형 일치도를 저작 에디터 COSMOS에서 확인한 뒤 실제 모션 시트 탑승 테스트로 체감 품질 검증</li>
+              <li>2025.06 ~ 08 환경효과 저작 프로그램 COSMOS 기능 추가·유지보수</li>
+            </ul>
+            <p class="stack">Python · C++ · C# · OpenCV · PyTorch · Visual Odometry · Pose Estimation · FFT</p>
+          </div>
+          <figure class="two">
+            <img src="assets/img/mci-aladdin.jpg" width="956" height="556" alt="COSMOS 에디터에서 Roll, Pitch, Heave 세 트랙의 파형. 스튜디오 마스터(녹색)와 MCI 자동 생성(자색)이 겹쳐 보임" loading="lazy">
+            <img src="assets/img/mci-blackpink.jpg" width="959" height="556" alt="공연 영상에 대한 MCI 생성 모션 파형 세 트랙" loading="lazy">
+            <figcaption>위: 영화 Aladdin, 스튜디오 마스터(녹색) 대 MCI 자동 생성(자색). 아래: 공연 영상. 주요 카메라 무브먼트 구간에서 파형이 일치합니다.</figcaption>
+          </figure>
+        </article>
+      </div>
+
+      <div class="employer">
+        <h3>서울특별시 보라매병원 · 2021.10 ~ 2022.05</h3>
+        <article class="project">
+          <div>
+            <h4>CT 전이암 3D Detection — 수련의 대비 성능 비교</h4>
+            <p class="sub">3D CNN 검출 모델을 만들고, 병변 크기 4구간·유형 3종(Lytic·Mixed·Sclerotic)별로 수련의 판독과 정면 비교.</p>
+            <ul>
+              <li>Total area / Spine 영역별, Visible / Visible+Indeterminate 기준으로 성능 매트릭스 정리</li>
+              <li>0.5mm 미만 미세 병변에서 수련의와 동등한 Recall (45.7% 대 43.6%)</li>
+              <li>Sclerotic 유형에서 수련의 대비 높은 Precision (27.0% 대 25.1%), Mixed 유형 Recall 61.5%</li>
+            </ul>
+            <p class="stack">Python · PyTorch · 3D CNN</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="employer">
+        <h3>투아이시스 · 2020.08 ~ 2021.07</h3>
+        <article class="project">
+          <div>
+            <h4>철도 T-bar(강체 전차선) 결함 자동검출 시스템</h4>
+            <p class="sub">육안 점검 공정을 딥러닝 자동검사로 전환. 결함이 보이면 알람과 영상을 지상 관제장치로 전송.</p>
+            <ul>
+              <li>YOLOv3 기반 4클래스(Insulator·Volt·Hook Volt·Defect) 검출, 2048×16384 라인스캔 영상 타일링·정규화 전처리 파이프라인</li>
+              <li>C++·MFC 검사 프로그램에 모델 통합, 정상 녹색 / 결함 적색 시각화</li>
+              <li>검증 영상 134장, 객체 9,514개 기준. Defect 클래스는 실측 표본 15건이라 별도 검증이 필요한 단계였습니다</li>
+            </ul>
+            <div class="nums">
+              <div><b>98.3%</b><span>Accuracy</span></div>
+              <div><b>99.5%</b><span>Precision</span></div>
+              <div><b>98.8%</b><span>Recall</span></div>
+              <div><b>99.15%</b><span>F1</span></div>
+            </div>
+          </div>
+          <figure>
+            <img src="assets/img/tbar-linescan.jpg" width="636" height="575" alt="전차선 라인스캔 영상. 볼트마다 붉은 검출 박스, 애자에 자색 박스가 그려짐" loading="lazy">
+            <figcaption>라인스캔 영상 위 검출 결과. 검출 클래스는 애자, 볼트, 후크 볼트, 결함.</figcaption>
+          </figure>
+        </article>
+        <article class="project">
+          <div>
+            <h4>선로점검차 궤도거리표 검출·숫자 인식</h4>
+            <p class="sub">열차 운행 안전과 선로 보수를 위해 궤도거리표를 찾고 숫자(2·4·6·8·Kilo)를 읽는 YOLOv4 시스템.</p>
+            <ul>
+              <li>5클래스 검출 모델 개발과 학습 데이터 구축, Confidence Threshold 0.25 튜닝 (TP 461 / FP 24 / FN 23)</li>
+              <li>C++·MFC 점검차 소프트웨어에 인식 결과 통합</li>
+            </ul>
+            <div class="nums">
+              <div><b>95%</b><span>Precision · Recall · F1</span></div>
+              <div><b>99.5%</b><span>Kilo 표지 AP</span></div>
+              <div><b>74.3%</b><span>Avg IoU</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="employer">
+        <h3>가천대학교 길병원 · 2018.10 ~ 2020.06</h3>
+        <article class="project">
+          <div>
+            <h4>Cobb's Angle 자동 측정 — 심평원 과제</h4>
+            <p class="sub">X-ray DICOM에서 U-Net으로 척추를 분할한 뒤 Apex/End Vertebra를 자동 선택해 측만 각도를 계산하고 VTK로 표시.</p>
+            <ul>
+              <li>영상별 Window Level 적용 DICOM 전처리, 척추 윤곽 → 중심점·회전 바운딩박스 산출</li>
+              <li>Apex는 첫 척추 대비 x-편차 최대 척추, End Vertebra는 Apex 기준 상·하 종판 방향 선분으로 자동 선택, 0~360° 각도 방향성 보정</li>
+              <li>Windows 응용프로그램(MFC)과 Annotation 프로그램 2종 산출</li>
+            </ul>
+            <p class="stack">C++ · MFC · OpenCV · ITK · VTK · U-Net</p>
+          </div>
+          <figure>
+            <img src="assets/img/cobb-xray.jpg" width="257" height="574" alt="전신 척추 X-ray 위에 세그멘테이션된 척추와 End Vertebra 선분, 측정된 Cobb 각이 표시됨" loading="lazy" style="max-width:200px">
+            <figcaption>VTK 결과 뷰어. 세그멘테이션 척추, End Vertebra 선분, 측정된 Cobb's Angle.</figcaption>
+          </figure>
+        </article>
+        <article class="project">
+          <div>
+            <h4>Brain CAD — 시계열 MRI 정합과 결절 변화 분석</h4>
+            <p class="sub">시간 간격을 두고 촬영한 Brain MRI를 3D Rigid 정합하고 딥러닝으로 결절을 검출해 변화량을 비교하는 CAD 시스템.</p>
+            <ul>
+              <li>ITK VersorRigid3DTransform + MeanSquares + RegularStepGradientDescent, ResampleImageFilter로 원본과 마스크를 동일 좌표계로 정합</li>
+              <li>Sagittal → Axial 단면 변환(임상 요청), 3D CNN 결절 검출 결과 오버레이, VTK 기반 2채널 DICOM Viewer</li>
+            </ul>
+            <p class="stack">C++ · MFC · ITK · VTK · PyTorch · 3D CNN</p>
+          </div>
+        </article>
+        <article class="project">
+          <div>
+            <h4>그 외 연구 과제</h4>
+            <p class="sub">임상 연구자가 바로 쓰는 도구를 만드는 일이 반복됐고, 그 경험이 지금의 라벨링 플랫폼으로 이어졌습니다.</p>
+            <ul>
+              <li>하지 CT 6개 근육 자동분할(DenseNet)과 슬라이스별 수동 라벨링·추론 보정 Annotation Tool (NIfTI, 다중 슬라이스 네비게이션)</li>
+              <li>자궁경부 Cervicography 정상/비정상 분류, ResNet-50, 10,392장 5-fold: Acc 93.4 · F1 94.5 · AUC 97.8</li>
+              <li>CT 코뼈 골절 진단 모델용 3D Annotation 프로그램, 다낭신(PKD) 판별 알고리즘 Matlab → Python 변환과 웹 측정 UI</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="personal">
+  <div class="section-grid">
+    <div class="rail"><h2>개인 프로젝트</h2><p>업무 밖에서 생성형 AI와 검증 방법을 손에 익히는 일들.</p></div>
+    <div class="body">
+      <article class="project">
+        <div>
+          <h4>LLM 에이전트 기반 데이터 수집·검증·생성 파이프라인</h4>
+          <p class="sub">공공데이터 수집부터 검증, 콘텐츠 생성까지 LLM 에이전트로 자동화해 개인적으로 구축·운영 중.</p>
+        </div>
+      </article>
+      <article class="project">
+        <div>
+          <h4>식약처 첨단AI 의료제품 레드팀 챌린지 본선 참가 (2026)</h4>
+          <p class="sub">의료 AI 시스템의 취약점을 찾는 쪽에서 참가. 도입하려는 기술이 어디까지 되고 어디서 막히는지 보는 눈을 얻었습니다.</p>
+        </div>
+      </article>
+      <article class="project">
+        <div>
+          <h4>시계열 모델 트레이딩 전략 백테스트</h4>
+          <p class="sub">Autoformer, N-BEATS 등 시계열 예측 모델을 같은 조건에서 비교하고, 결과가 좋아 보이는 전략도 선택편의·룩어헤드·생존편향을 하나씩 제거한 뒤 실제로 남는 효과만 채택.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="section-grid">
+    <div class="rail"><h2>일하는 방식</h2></div>
+    <div class="body-wide">
+      <div class="how">
+        <div><h3>영상 알고리즘에서 제품 코드까지</h3><p>ITK/VTK 정합·측정 알고리즘부터 Vue3·FastAPI 서비스까지 한 사람이 끝까지 연결합니다.</p></div>
+        <div><h3>제약 조건에서 답 찾기</h3><p>GPU 없는 서버라면 브라우저 추론으로, 규제 요건이라면 append-only 원장과 메타데이터-only 발행으로 풉니다.</p></div>
+        <div><h3>근본 원인까지</h3><p>nginx 업스트림 IP 고정, 브러시 spacing 역수 부풀림 같은 증상 뒤의 원인을 잡고 재발 방지 규칙으로 남깁니다.</p></div>
+        <div><h3>측정으로 말하기</h3><p>F1·Dice·κ·AP를 실측하고 수련의·스튜디오 마스터와 비교해 성과를 숫자로 제시합니다. 자동화 효과를 주장하기 전에 지표부터 정합니다.</p></div>
+        <div><h3>문서와 인수인계</h3><p>혼자 일하는 환경이 길었던 만큼 코드보다 운영 매뉴얼과 의사결정 기록을 먼저 남깁니다.</p></div>
+        <div><h3>AI 도구로 개발</h3><p>Codex 초안 → Claude 독립 검토 → 합의 기록 → 실행·QA 흐름으로 리뷰 품질과 속도를 같이 올립니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="section-grid">
+    <div class="rail"><h2>학력 · 자격</h2></div>
+    <div class="body">
+      <div class="rows">
+        <div class="row"><div class="k">2016 ~ 2018</div><div>부산대학교 의학전문대학원 의과학과 석사 (의료영상처리 · 내시경 영상)</div></div>
+        <div class="row"><div class="k">2010 ~ 2016</div><div>신라대학교 컴퓨터공학과 학사</div></div>
+        <div class="row"><div class="k">2016.08</div><div>정보처리기사 (한국산업인력공단)</div></div>
+        <div class="row"><div class="k">외국어</div><div>영문 기술문서 독해 및 작성</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-grid">
+    <div class="rail"><h2>연락</h2></div>
+    <div class="body">
+      <p class="contact"><a href="mailto:gyyi0718@gmail.com">gyyi0718@gmail.com</a></p>
+      <p class="note">상세 성능표와 코드 설명은 요청 시 별도로 드립니다. 이 페이지는 브라우저 인쇄 기능으로 PDF 저장이 됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>이경윤 · 2026</span>
+  <button type="button" id="theme" aria-label="밝은 화면과 어두운 화면 전환">화면 테마 전환</button>
+</footer>
+
+</div>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme');
+  try{var s=localStorage.getItem('theme');if(s)root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);
+    var next=dark?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
 </html>
