@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>크립토 전략 검증 보고서 — Codex 교차검증 결과</title>
+<title>크립토 전략 검증 보고서 — 교차검증 결과</title>
 <style>
   :root { color-scheme:light;
     --page:#f7f6f3; --surface:#fdfdfc; --sunk:#f0efeb; --ink:#12110f; --ink2:#4e4c47;
@@ -80,7 +80,7 @@
 <div class="wrap">
 
 <header class="doc">
-  <div class="eyebrow">교차검증 보고서 · Claude 백테스트 → Codex 감사</div>
+  <div class="eyebrow">교차검증 보고서 · 1차 백테스트 → 독립 감사·재계산</div>
   <h1>크립토 전략 검증 결과 — 재계산 후 무엇이 남았나</h1>
   <p>평가기간 2020-08-01 ~ 2026-07-31 (UTC, 6년) · 바이낸스 USD-M 무기한선물 + 현물 실데이터</p>
   <p>신호는 완성 일봉, 체결은 다음날 00:00 UTC · 손절·청산은 1시간봉 계약가/마크가 기준 · 펀딩비 실적용</p>
@@ -185,7 +185,7 @@
 <h2><span class="no">5</span>이 결과의 한계 — 감사자가 직접 명시한 것</h2>
 <ul>
   <li><b>여전히 표본 내 결과다.</b> 체결·비용 모델을 크게 개선했지만 이미 관찰된 6년을 다시 본 것이고, 진짜 검증은 앞으로 쌓이는 데이터로만 가능하다.</li>
-  <li><b>보정 p값은 하한선이다.</b> 65개 후보만 보정했을 뿐, 그 전에 내가 시도한 수백 개 파라미터 조합의 숨은 시행 횟수는 복원되지 않았다. 실제 유의성은 표에 적힌 것보다 더 나쁘다.</li>
+  <li><b>보정 p값은 하한선이다.</b> 65개 후보만 보정했을 뿐, 그 전 탐색 단계에서 시도한 수백 개 파라미터 조합의 숨은 시행 횟수는 복원되지 않았다. 실제 유의성은 표에 적힌 것보다 더 나쁘다.</li>
   <li><b>유지증거금 이력을 완전히 복원하지 못했다.</b> 보수적 근사를 썼으므로 청산 경계 부근 결과는 실계정 브래킷으로 재확인이 필요하다.</li>
   <li><b>평가기간이 6년으로 줄었다.</b> 무기한선물 데이터 가용 구간에 맞춘 결과이며, 2018~2020 구간은 빠져 있다.</li>
 </ul>
@@ -206,7 +206,7 @@
 </div>
 
 <div class="foot">
-  1차 백테스트: Claude (BTC/ETH 일봉 8.6년, 40여 개 변형) · 2차 감사·재계산: Codex (보정 엔진 <code>corrected_backtest.py</code>, 65개 후보).
+  1차 백테스트: BTC/ETH 일봉 8.6년, 40여 개 변형 · 2차 감사·재계산: 보정 엔진 <code>corrected_backtest.py</code>, 65개 후보.
   본 문서는 내부 검토용이며 투자 권유가 아니고 미래 수익을 보장하지 않는다. 2026.08 작성.
 </div>
 
