@@ -1,0 +1,160 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>크립토 투트랙 — 방어·공격 30년 투영</title>
+<style>
+  :root { color-scheme:light; --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e;
+    --muted:#898781; --grid:#e1e0d9; --baseline:#c3c2b7; --ring:rgba(11,11,11,.1);
+    --s1:#2a78d6; --s2:#eb6834; --warn:#b3421c; }
+  @media (prefers-color-scheme: dark) {
+    :root { color-scheme:dark; --page:#0d0d0d; --surface:#1a1a19; --ink:#fff; --ink2:#c3c2b7;
+      --grid:#2c2c2a; --baseline:#383835; --ring:rgba(255,255,255,.1); --s1:#3987e5; --s2:#d95926;
+      --warn:#e4703f; }
+  }
+  :root[data-theme="dark"] { color-scheme:dark; --page:#0d0d0d; --surface:#1a1a19; --ink:#fff;
+    --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a; --baseline:#383835; --ring:rgba(255,255,255,.1);
+    --s1:#3987e5; --s2:#d95926; --warn:#e4703f; }
+  :root[data-theme="light"] { color-scheme:light; --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b;
+    --ink2:#52514e; --muted:#898781; --grid:#e1e0d9; --baseline:#c3c2b7; --ring:rgba(11,11,11,.1);
+    --s1:#2a78d6; --s2:#eb6834; --warn:#b3421c; }
+  body { margin:0; background:var(--page); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.75; font-size:15.5px; }
+  .wrap { max-width:880px; margin:0 auto; padding:38px 22px 70px; }
+  header.doc { border-bottom:2px solid var(--ink); padding-bottom:18px; margin-bottom:30px; }
+  header.doc h1 { font-size:25px; margin:0 0 6px; text-wrap:balance; }
+  header.doc p { margin:2px 0; color:var(--ink2); font-size:13.5px; }
+  h2 { font-size:19px; margin:44px 0 12px; padding-top:8px; border-top:1px solid var(--grid);
+    text-wrap:balance; }
+  h2 .no { color:var(--muted); font-weight:600; margin-right:8px; }
+  h3 { font-size:16px; margin:26px 0 8px; color:var(--ink2); }
+  .tw { overflow-x:auto; margin:14px 0 6px; }
+  table { border-collapse:collapse; width:100%; background:var(--surface);
+    font-size:14px; font-variant-numeric:tabular-nums; }
+  th,td { border:1px solid var(--grid); padding:8px 10px; text-align:right; white-space:nowrap; }
+  th { color:var(--ink2); font-weight:600; }
+  th:first-child, td:first-child { text-align:left; white-space:normal; }
+  td.hl { font-weight:700; }
+  td.bad { color:var(--warn); font-weight:700; }
+  .cap { color:var(--muted); font-size:12.5px; margin:4px 0 0; }
+  .key { background:var(--surface); border:1px solid var(--ring); border-left:4px solid var(--s1);
+    border-radius:10px; padding:16px 20px; margin:20px 0; }
+  .key.warn { border-left-color:var(--warn); }
+  .key.act { border-left-color:var(--s2); }
+  ul { margin:8px 0; padding-left:20px; } li { margin:5px 0; }
+  .foot { color:var(--muted); font-size:12px; border-top:1px solid var(--grid); margin-top:44px; padding-top:12px; }
+  code { background:var(--surface); border:1px solid var(--grid); border-radius:4px; padding:1px 5px; font-size:13px; }
+</style>
+
+<div class="wrap">
+
+<header class="doc">
+  <h1>크립토 투트랙 — 방어·공격 30년 투영</h1>
+  <p>BTC/ETH 일봉 8.6년(2018.01~2026.08) 실데이터 · 블록 부트스트랩 3,000회 · 매월 적립 기준</p>
+  <p>비용 가정: 선물 왕복 0.1%+슬리피지 / 현물 편도 0.15% · 손절은 ATR×2.0 동적 · 청산 반영</p>
+</header>
+
+<div class="key warn">
+  <b>먼저 읽을 것 — 원본 투영은 못 믿는 숫자다.</b><br>
+  과거 8.6년 수익률을 그대로 30년에 복리로 굴리면 <b>ADX 3배 트랙의 30년 중앙값이 1,120억 달러</b>가 나온다.
+  월 100달러(총납입 3.65만 달러)로 세계 최대 헤지펀드보다 큰 자산이 된다는 뜻이라, 이건 전략이 대단한 게 아니라
+  <b>모델이 깨졌다는 증거</b>다. 원인은 명확하다 — 8.6년 표본에 2020·2024 두 번의 불장이 들어 있고,
+  부트스트랩은 그 불장을 30년 내내 반복 재생한다. 그래서 이 문서의 본표는 전부
+  <b>수익률 감쇠 시나리오</b>(시장이 성숙하며 초과수익이 매년 줄어든다는 가정)로 계산했다.
+</div>
+
+<h2><span class="no">1</span>실측 성적 — 무엇을 투영하는가</h2>
+<p>아래는 8.6년 실데이터에서 측정된 각 트랙의 실제 성적이다. 투영은 이 수익률 분포를 재표본추출한 것이므로, 이 표가 모든 숫자의 뿌리다.</p>
+<div class="tw">
+<table>
+  <tr><th style="text-align:left">트랙</th><th>연환산 수익</th><th>일 변동성</th><th>MDD</th><th style="text-align:left">성격</th></tr>
+  <tr><td>V4 ADX <span style="color:var(--s1)">(방어)</span></td><td class="hl">+12.4%</td><td>0.65%</td><td>-15%</td><td style="text-align:left">현금버퍼 30% + 변동성타게팅, 추세 강할 때만 진입</td></tr>
+  <tr><td>V4 돈치안 <span style="color:var(--s1)">(방어)</span></td><td class="hl">+16.4%</td><td>0.73%</td><td>-16%</td><td style="text-align:left">위와 같되 채널돌파 필터</td></tr>
+  <tr><td>ADX+SMA50 1x <span style="color:var(--s2)">(공격)</span></td><td class="hl">+33.5%</td><td>1.76%</td><td>-35%</td><td style="text-align:left">레버리지 없음, ATR 손절만</td></tr>
+  <tr><td>일목구름 1x <span style="color:var(--s2)">(공격)</span></td><td class="hl">+42.4%</td><td>2.10%</td><td>-48%</td><td style="text-align:left">구름 위에서만 보유</td></tr>
+  <tr><td>ADX+SMA50 2x <span style="color:var(--s2)">(공격)</span></td><td class="hl">+55.3%</td><td>3.01%</td><td>-54%</td><td style="text-align:left">2배 레버리지 + 손절</td></tr>
+  <tr><td>ADX+SMA50 3x <span style="color:var(--s2)">(공격)</span></td><td class="hl">+68.8%</td><td>4.08%</td><td>-67%</td><td style="text-align:left">3배 — 켈리 상한 부근</td></tr>
+  <tr><td style="color:var(--muted)">BTC 존버 (기준선)</td><td>+26.2%</td><td>3.24%</td><td>-77%</td><td style="text-align:left">아무것도 안 함</td></tr>
+</table>
+</div>
+<p class="cap">핵심 대비: 방어 트랙은 수익이 존버의 절반이지만 낙폭이 1/5. 공격 트랙은 수익이 존버의 1.3~2.6배면서 낙폭도 존버보다 작다 — 손절과 추세필터가 동시에 일한 결과다.</p>
+
+<h2><span class="no">2</span>투트랙 30년 투영 — 각 트랙 월 $100 (합계 월 $200)</h2>
+<p>방어와 공격에 각각 월 100달러씩 넣는 구조. 두 트랙은 같은 시장에서 움직이므로 <b>동일 경로에서 동시에 시뮬레이션</b>해 상관관계를 보존했다(백분위 단순 합산이 아님).</p>
+
+<h3>주 시나리오 — 초과수익 연 7% 감쇠</h3>
+<div class="tw">
+<table>
+  <tr><th style="text-align:left">조합</th><th>기간</th><th>총 납입</th><th>하위 10%</th><th>중앙값</th><th>상위 10%</th></tr>
+  <tr><td rowspan="3">V4 ADX + <b>일목 1x</b><br><span class="cap">균형형</span></td><td>10년</td><td>$24,200</td><td>$41,132</td><td class="hl">$84,119</td><td>$242,873</td></tr>
+  <tr><td>20년</td><td>$48,600</td><td>$146,936</td><td class="hl">$367,050</td><td>$1,367,228</td></tr>
+  <tr><td>30년</td><td>$73,000</td><td>$299,625</td><td class="hl">$800,428</td><td>$2,957,084</td></tr>
+  <tr><td rowspan="3">V4 ADX + <b>ADX 2x</b><br><span class="cap">공격형</span></td><td>10년</td><td>$24,200</td><td>$48,934</td><td class="hl">$149,537</td><td>$709,471</td></tr>
+  <tr><td>20년</td><td>$48,600</td><td>$259,045</td><td class="hl">$1,146,635</td><td>$7,724,590</td></tr>
+  <tr><td>30년</td><td>$73,000</td><td>$628,053</td><td class="hl">$3,366,685</td><td>$24,238,426</td></tr>
+  <tr><td rowspan="3">V4 돈치안 + <b>ADX 1x</b><br><span class="cap">보수형</span></td><td>10년</td><td>$24,200</td><td>$39,795</td><td class="hl">$67,750</td><td>$142,366</td></tr>
+  <tr><td>20년</td><td>$48,600</td><td>$123,857</td><td class="hl">$237,073</td><td>$576,522</td></tr>
+  <tr><td>30년</td><td>$73,000</td><td>$225,724</td><td class="hl">$442,832</td><td>$1,121,594</td></tr>
+</table>
+</div>
+<p class="cap">하위 10% = 3,000번 시뮬 중 나쁜 쪽 10% 지점. 이 값도 총납입을 3~9배 넘는다는 게 이 구조의 강점이다.</p>
+
+<h3>보수 시나리오 — 초과수익 연 12% 감쇠 (30년 단일 트랙 기준)</h3>
+<div class="tw">
+<table>
+  <tr><th style="text-align:left">트랙 (월 $100)</th><th>총 납입</th><th>하위 10%</th><th>중앙값</th></tr>
+  <tr><td>V4 ADX (방어)</td><td>$36,500</td><td>$44,259</td><td class="hl">$48,833</td></tr>
+  <tr><td>V4 돈치안 (방어)</td><td>$36,500</td><td>$48,308</td><td class="hl">$54,163</td></tr>
+  <tr><td>일목 1x (공격)</td><td>$36,500</td><td>$81,974</td><td class="hl">$147,051</td></tr>
+  <tr><td>ADX 2x (공격)</td><td>$36,500</td><td>$129,106</td><td class="hl">$331,243</td></tr>
+  <tr><td style="color:var(--muted)">BTC 존버</td><td>$36,500</td><td>$66,005</td><td>$133,129</td></tr>
+</table>
+</div>
+<p class="cap">감쇠를 강하게 걸면 방어 트랙은 원금의 1.3~1.5배까지 내려온다 — 크립토 초과수익이 사라지는 세계에서는 방어 트랙이 사실상 예금이 된다는 뜻. 반대로 공격 트랙은 감쇠에도 4~9배를 유지한다.</p>
+
+<h2><span class="no">3</span>투트랙이 몰빵보다 나은가 — 정직한 답</h2>
+<div class="tw">
+<table>
+  <tr><th style="text-align:left">배분 (30년, 감쇠 7%)</th><th>총 납입</th><th>하위 10%</th><th>중앙값</th></tr>
+  <tr><td>방어 몰빵 (V4 ADX 월$200)</td><td>$73,000</td><td>$112,744</td><td>$138,748</td></tr>
+  <tr><td><b>투트랙</b> (V4 ADX + 일목1x 각 $100)</td><td>$73,000</td><td class="hl">$299,625</td><td class="hl">$800,428</td></tr>
+  <tr><td>공격 몰빵 (일목1x 월$200)</td><td>$73,000</td><td>$478,362</td><td>$1,458,098</td></tr>
+  <tr><td>공격 몰빵 (ADX 2x 월$200)</td><td>$73,000</td><td>$1,264,573</td><td>$6,663,271</td></tr>
+</table>
+</div>
+<p><b>순수 수익만 보면 공격 몰빵이 이긴다.</b> 투트랙은 그 중간이다. 그럼에도 투트랙을 권하는 이유는 수익률이 아니라 <b>실행 가능성</b>에 있다:</p>
+<ul>
+  <li><b>낙폭 체감이 절반이 된다.</b> 공격 트랙 단독 MDD는 -48~54%. 방어를 절반 섞으면 계좌 전체 낙폭은 -30% 안팎으로 내려온다. 본인이 "-75%는 못 견딘다"고 판단한 기준선 안쪽이다.</li>
+  <li><b>공격 트랙이 죽어도 계좌가 남는다.</b> 백테스트에서 레버리지 트랙은 10배 이상에서 전액 소멸했다. 방어 트랙이 분리돼 있으면 그 사고가 계좌 전체를 지우지 않는다.</li>
+  <li><b>중단 확률이 낮아진다.</b> Morningstar 연구에서 변동성 큰 펀드일수록 투자자 실현수익이 펀드 수익보다 연 7%p까지 뒤처졌다. 실행되지 않는 최적해보다 실행되는 차선이 낫다.</li>
+</ul>
+
+<h2><span class="no">4</span>이 표를 그대로 믿으면 안 되는 이유 5가지</h2>
+<div class="key warn">
+<ol style="margin:6px 0; padding-left:20px">
+  <li><b>표본이 8.6년, 사이클은 2번뿐.</b> 30년 투영의 근거가 두 번의 불장이다. 부트스트랩은 없는 미래를 만들지 못하고 과거를 재배열할 뿐이다.</li>
+  <li><b>수익 집중도.</b> 공격 트랙을 거래 단위로 뜯어보면 <b>상위 1~3개 거래가 총손익의 79~182%</b>를 차지한다. 나머지 거래는 합쳐서 마이너스다. 그 몇 번이 다음 30년에 또 온다는 보장이 없다.</li>
+  <li><b>코인을 바꾸면 무너지는 조합이 있다.</b> 같은 규칙을 8개 메이저에 적용했을 때 EMA 5배 조합은 5종에서 원금 손실이 났다. 이 문서의 트랙들(ADX·일목·V4)은 그 검증을 통과했지만, 통과했다고 미래가 보장되지는 않는다.</li>
+  <li><b>거래소·규제·세금이 빠져 있다.</b> 30년간 거래소 파산, 규제 변화, 양도세 신설 중 어느 하나도 모델에 없다. 특히 한국은 가상자산 과세가 시행되면 이 표의 세후 결과가 크게 달라진다.</li>
+  <li><b>레버리지 트랙은 실환경 검증이 0일이다.</b> 지금 페이퍼로 돌아가는 건 방어 트랙 3종뿐이다. 공격 트랙은 백테스트에만 존재한다.</li>
+</ol>
+</div>
+
+<h2><span class="no">5</span>다음 행동 — 숫자를 믿기 전에 할 일</h2>
+<div class="key act">
+<ul style="margin:6px 0">
+  <li><b>공격 트랙을 페이퍼에 추가한다.</b> 현재 3트랙(V4 SMA50/돈치안/ADX)에 <code>일목 1x + ATR손절</code>을 4번째로 붙여 실환경 신호를 쌓는다. 레버리지는 페이퍼 성적이 백테스트와 일치하는 걸 확인한 뒤에 논의한다.</li>
+  <li><b>실거래 전환은 1x부터.</b> 백테스트상 2~3배가 최적이지만, 그건 8.6년을 완주했을 때의 얘기다. 실환경 1x로 최소 6개월을 돌려 신호 일치와 체결 품질을 확인한 뒤 배율을 올린다.</li>
+  <li><b>공격 트랙 상한을 미리 정한다.</b> 실효 레버리지 3배를 넘기지 않는다 — 켈리 계산(2.47배), 백테스트 최적점(2~3배), 실제 운용 사례(2~3배)가 전부 같은 지점을 가리킨다. 5배 이상은 백테스트에서도 꺾였다.</li>
+  <li><b>6개월마다 이 표를 다시 계산한다.</b> 데이터가 늘면 숫자가 바뀐다. 특히 하락장이 한 번 더 들어오면 공격 트랙 수치가 크게 내려갈 것이다 — 그게 정상이고, 그때 내려간 숫자가 더 믿을 만한 숫자다.</li>
+</ul>
+</div>
+
+<div class="foot">
+  본 문서는 BTC/ETH 8.6년 실데이터 백테스트와 블록 부트스트랩 시뮬레이션에 근거한 내부 검토 자료이며, 미래 수익을 보장하지 않습니다.
+  모든 투영은 "과거 수익률 분포가 반복된다"는 가정 위에 있고, 그 가정 자체가 이 문서에서 가장 약한 고리입니다.
+  실거래 전 페이퍼 검증 필수 · 2026.08 작성.
+</div>
+
+</div>
+
+</body></html>
